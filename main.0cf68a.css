@@ -811,7 +811,7 @@ body {
 	background: #eaeaea;
 	left: 300px;
 	width: auto;
-	background: url("https://source.unsplash.com/random");
+	background: url("./img/article_bg.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	opacity: 0.7
