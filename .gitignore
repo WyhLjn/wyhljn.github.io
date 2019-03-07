@@ -7,5 +7,3 @@ node_modules/
 public/
 .deploy*/
 package.json
-themes/
-source/
