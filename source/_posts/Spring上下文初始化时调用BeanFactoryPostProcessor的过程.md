@@ -3,8 +3,10 @@ title: Spring上下文初始化时调用BeanFactoryPostProcessor的过程
 date: 2018-05-14 21:07:23
 categories:
 - 工作
+- 学习
 tags:
-- spring
+- Spring
+- Java
 - 源码
 ---
 > 本文继续接着上文，讲*refresh* 方法的invokeBeanFactoryPostProcessors

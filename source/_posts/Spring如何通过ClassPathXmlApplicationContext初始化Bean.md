@@ -1,10 +1,12 @@
 ---
-title: Spring通过xml方式注册Bean（一）
-date: 2018-04-22 21:09:34
+title: Spring如何通过ClassPathXmlApplicationContext初始化Bean
+date: 2018-04-22 20:57:11
 categories:
 - 工作
+- 学习
 tags:
-- spring
+- Spring
+- Java
 - 源码
 ---
 >懒癌重症患者真是没得治，拖了这么久终于有勇气开始写了。之前对spring框架的理解都是一知半解、碎片化的，没有系统的真正了解过的spring知识体系，还是停留在使用的阶段。作为CRUD了几年的猿，水平这么菜也是没谁了（好多大学生已经对源码如数家珍了，而我才开始看spring源码。。。）。不管怎么样，从现在开始，总比从未来开始要好，现在即是起点（谁让之前那么懒了，希望这样能鼓励自己，坚持下去：）），希望自己的程序猿生涯能从现在开始开始不一样，即便是一点小小的改变。每个人的资质不一样，我属于笨的那种，记忆力还不好，这都不是理由，努力是自己的，未来也是自己的，生活是自己的。不怕自己的生涯如何，只希望能和以前不一样，不管别人取得多大的成就，不羡慕，不嫉妒，走好自己的路，过程和结果好或坏都是自己的，就酱……
@@ -21,7 +23,8 @@ tags:
 
 先看下ClassPathXmlApplicationContext类的继承关系（不得不吐槽下有道云笔记，上传图片不能直接粘贴，还非得分享了才行）
 
-![image](https://note.youdao.com/yws/public/resource/207a9ecc455dda5d8d671e4cfc74b4cc/xmlnote/0F465EA5AA934E97BE7A761826DF6D3A/3780)
+![](http://ww1.sinaimg.cn/large/ad274f89ly1g0u6nkicy6j20rh07pt9n.jpg)
+
 ClassPathXmlApplicationContext继承了AbstractXmlApplicationContext类，而AbstractXmlApplicationContext又继承了AbstractApplicationContext，refresh正是这个类的方法
 ```
 public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent)
