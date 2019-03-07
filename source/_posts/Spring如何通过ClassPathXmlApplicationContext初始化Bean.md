@@ -18,7 +18,7 @@ tags:
 >Standalone XML application context, taking the context definition files from the class path, interpreting plain paths as class path resource names that include the package path (e.g. "mypackage/myresource.txt"). Useful for test harnesses as well as for application contexts embedded within JARs.
 
 这是spring源码里给出的定义。它是独立的XML应用上下文，从classpath里得到上下文定义文件，将纯路径解释为包含包路径的classpath路径名称
-
+<!-- more -->
 - 调用ClassPathXmlApplicationContext构造方法
 
 先看下ClassPathXmlApplicationContext类的继承关系（不得不吐槽下有道云笔记，上传图片不能直接粘贴，还非得分享了才行）

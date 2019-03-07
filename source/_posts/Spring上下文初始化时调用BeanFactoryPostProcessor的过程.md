@@ -16,6 +16,7 @@ tags:
 
 > Application contexts can auto-detect BeanFactoryPostProcessor beans in their bean definitions and apply them before any other beans get created.
 
+<!-- more -->
 
 它能够修改应用上下文的bean定义,应用上下文能自动检测bean定义中的*BeanFactoryPostProcessor*，并且在创建其它bean之前执行processor。
 
