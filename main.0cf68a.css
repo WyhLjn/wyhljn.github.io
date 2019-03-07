@@ -1444,8 +1444,8 @@ pre .css~* .id, pre .id {
 }
 
 #header .header-nav .social a.github {
-	background: url(//cdn.bootcss.com/logos/0.2.0/github-octocat.svg) no-repeat #fff;
-	background-size: 90%;
+	background: url(//cdnjs.cloudflare.com/ajax/libs/ionicons/4.4.8/collection/icon/svg/logo-github.svg) no-repeat #fff;
+	background-size: 100%;
    	background-position: 50% 100%;
 }
 

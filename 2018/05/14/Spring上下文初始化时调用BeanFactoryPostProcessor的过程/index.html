@@ -9,14 +9,14 @@
   <title>Spring上下文初始化时调用BeanFactoryPostProcessor的过程 | Hui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本文继续接着上文，讲refresh 方法的invokeBeanFactoryPostProcessors  先看下BeanFactoryPostProcessor的定义  Allows for custom modification of an application context’s bean definitions, adapting the bean property values of">
-<meta name="keywords" content="Spring,Java,源码">
+<meta name="keywords" content="Java,Spring,源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring上下文初始化时调用BeanFactoryPostProcessor的过程">
 <meta property="og:url" content="http://yoursite.com/2018/05/14/Spring上下文初始化时调用BeanFactoryPostProcessor的过程/index.html">
 <meta property="og:site_name" content="Hui">
 <meta property="og:description" content="本文继续接着上文，讲refresh 方法的invokeBeanFactoryPostProcessors  先看下BeanFactoryPostProcessor的定义  Allows for custom modification of an application context’s bean definitions, adapting the bean property values of">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-07T05:20:04.005Z">
+<meta property="og:updated_time" content="2019-03-07T07:10:04.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring上下文初始化时调用BeanFactoryPostProcessor的过程">
 <meta name="twitter:description" content="本文继续接着上文，讲refresh 方法的invokeBeanFactoryPostProcessors  先看下BeanFactoryPostProcessor的定义  Allows for custom modification of an application context’s bean definitions, adapting the bean property values of">
@@ -192,6 +192,7 @@
 <p>Allows for custom modification of an application context’s bean definitions, adapting the bean property values of the context’s underlying bean factory.</p>
 <p>Application contexts can auto-detect BeanFactoryPostProcessor beans in their bean definitions and apply them before any other beans get created.</p>
 </blockquote>
+<a id="more"></a>
 <p>它能够修改应用上下文的bean定义,应用上下文能自动检测bean定义中的<em>BeanFactoryPostProcessor</em>，并且在创建其它bean之前执行processor。</p>
 <p><em>BeanFactoryPostProcessor</em>只有一个方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Modify the application context&apos;s internal bean factory after its standard</span><br><span class="line"> * initialization. All bean definitions will have been loaded, but no beans</span><br><span class="line"> * will have been instantiated yet. This allows for overriding or adding</span><br><span class="line"> * properties even to eager-initializing beans.</span><br><span class="line"> * @param beanFactory the bean factory used by the application context</span><br><span class="line"> * @throws org.springframework.beans.BeansException in case of errors</span><br><span class="line"> */</span><br><span class="line">void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;</span><br></pre></td></tr></table></figure></p>
 <p>上下文初始化后，修改上下文的bean factory。所有bean定义已经加载，但是还没有初始化。可以重写或者添加属性，甚至对bean热初始化。</p>
@@ -223,11 +224,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -396,7 +397,7 @@
       	</div>
     </div>
   </div>
-  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </footer>
     </div>
     <script>
@@ -468,7 +469,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -476,15 +477,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
             
             <div class="clearfix"></div>

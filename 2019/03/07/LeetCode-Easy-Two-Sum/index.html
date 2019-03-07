@@ -9,14 +9,14 @@
   <title>LeetCode-Easy Two Sum | Hui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="LeetCode - Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may">
-<meta name="keywords" content="Java,LeetCode,算法">
+<meta name="keywords" content="LeetCode,Java,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode-Easy Two Sum">
 <meta property="og:url" content="http://yoursite.com/2019/03/07/LeetCode-Easy-Two-Sum/index.html">
 <meta property="og:site_name" content="Hui">
 <meta property="og:description" content="LeetCode - Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-07T03:56:46.261Z">
+<meta property="og:updated_time" content="2019-03-07T07:09:43.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode-Easy Two Sum">
 <meta name="twitter:description" content="LeetCode - Two Sum Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may">
@@ -192,6 +192,7 @@
 <p>Because nums[0] + nums[1] = 2 + 7 = 9,<br>return [0, 1].</p>
 </blockquote>
 <hr>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static int[] twoSum(int[] nums, int target) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">        for (int i = 0 ; i &lt; nums.length; i++) &#123;</span><br><span class="line">            int ret = target - nums[i];</span><br><span class="line">            if (map.containsKey(ret)) &#123;</span><br><span class="line">                return new int[]&#123;map.get(ret), i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(nums[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        return new int[0];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int[] nums = &#123;1, 3, 5, 6, 9, 10&#125;;</span><br><span class="line">        int target = 12;</span><br><span class="line">        int[] result = twoSum(nums, target);</span><br><span class="line">        // 1:4</span><br><span class="line">        System.out.println(result[0] + &quot;:&quot; + result[1]);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -206,11 +207,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -366,7 +367,7 @@
       	</div>
     </div>
   </div>
-  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </footer>
     </div>
     <script>
@@ -438,7 +439,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -446,15 +447,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
             
             <div class="clearfix"></div>
