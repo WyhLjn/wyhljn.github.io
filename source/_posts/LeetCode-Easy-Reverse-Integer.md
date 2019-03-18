@@ -9,7 +9,6 @@ tags:
 - 算法
 ---
 
-## LeetCode - Reverse Integer
 > Given a 32-bit signed integer, reverse digits of an integer.
 > 
 > Example 1:
