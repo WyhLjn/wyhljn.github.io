@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>LeetCode - Palindrome Number | Hui</title>
+  <title>LeetCode - Longest Common Prefix | Hui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward. Example 1: Input: 121Output: trueExample 2: Input: -121Output: falseExplanation: F">
+  <meta name="description" content="Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string “”. Example 1: Input: [“flower”,”flow”,”flight”]Output: “fl">
 <meta name="keywords" content="LeetCode,Java,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode - Palindrome Number">
-<meta property="og:url" content="http://yoursite.com/2019/03/14/LeetCode-Easy-Palindrome-Number/index.html">
+<meta property="og:title" content="LeetCode - Longest Common Prefix">
+<meta property="og:url" content="http://yoursite.com/2019/03/18/LeetCode-Longest-Common-Prefix/index.html">
 <meta property="og:site_name" content="Hui">
-<meta property="og:description" content="Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward. Example 1: Input: 121Output: trueExample 2: Input: -121Output: falseExplanation: F">
+<meta property="og:description" content="Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string “”. Example 1: Input: [“flower”,”flow”,”flight”]Output: “fl">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-18T11:14:01.464Z">
+<meta property="og:updated_time" content="2019-03-18T11:13:52.891Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode - Palindrome Number">
-<meta name="twitter:description" content="Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward. Example 1: Input: 121Output: trueExample 2: Input: -121Output: falseExplanation: F">
+<meta name="twitter:title" content="LeetCode - Longest Common Prefix">
+<meta name="twitter:description" content="Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string “”. Example 1: Input: [“flower”,”flow”,”flight”]Output: “fl">
   
     <link rel="alternative" href="/atom.xml" title="Hui" type="application/atom+xml">
   
@@ -161,14 +161,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-LeetCode-Easy-Palindrome-Number" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-LeetCode-Longest-Common-Prefix" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      LeetCode - Palindrome Number
+      LeetCode - Longest Common Prefix
     </h1>
   
 
@@ -176,8 +176,8 @@
   	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
 </a>
         
-        <a href="/2019/03/14/LeetCode-Easy-Palindrome-Number/" class="archive-article-date">
-  	<time datetime="2019-03-14T11:59:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-14</time>
+        <a href="/2019/03/18/LeetCode-Longest-Common-Prefix/" class="archive-article-date">
+  	<time datetime="2019-03-18T11:06:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
 </a>
         
       </header>
@@ -185,14 +185,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.</p>
+<p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+<p>If there is no common prefix, return an empty string “”.</p>
 <p>Example 1:</p>
-<p>Input: 121<br>Output: true<br>Example 2:</p>
-<p>Input: -121<br>Output: false<br>Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.<br>Example 3:</p>
-<p>Input: 10<br>Output: false<br>Explanation: Reads 01 from right to left. Therefore it is not a palindrome.</p>
+<p>Input: [“flower”,”flow”,”flight”]<br>Output: “fl”</p>
+<p>Example 2:</p>
+<p>Input: [“dog”,”racecar”,”car”]<br>Output: “”<br>Explanation: There is no common prefix among the input strings.</p>
+<p>Note:</p>
+<p>All given inputs are in lowercase letters a-z.</p>
 </blockquote>
 <hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public boolean isPalindrome(int x) &#123;</span><br><span class="line">    // 负数，小数都不是回文</span><br><span class="line">    if (x &lt; 0 || (x % 10 == 0 &amp;&amp; x != 0)) return false;</span><br><span class="line">    int revertNumber = 0;</span><br><span class="line">    // 找到数字的中间位置</span><br><span class="line">    while (x &gt; revertNumber) &#123;</span><br><span class="line">        revertNumber = revertNumber * 10 + x % 10;</span><br><span class="line">        x /= 10;</span><br><span class="line">    &#125;</span><br><span class="line">    return  x == revertNumber || x == revertNumber / 10;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    int originNumber = 123321;</span><br><span class="line">    // 123321 isPalindrome:true</span><br><span class="line">    System.out.println(originNumber + &quot; isPalindrome:&quot; + new PalindromeNumber().isPalindrome(originNumber));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public String longestCommonPrefix(String[] strs) &#123;</span><br><span class="line"></span><br><span class="line">    if (null == strs || strs.length == 0) return &quot;&quot;;</span><br><span class="line">    if (strs.length == 1) return strs[0];</span><br><span class="line"></span><br><span class="line">    // 找到长度最小字符串，减少循环次数</span><br><span class="line">    int minLength = strs[0].length();</span><br><span class="line">    for (int i = 1; i &lt; strs.length; i++) &#123;</span><br><span class="line">        minLength = Math.min(strs[i].length(), minLength);</span><br><span class="line">    &#125;</span><br><span class="line">    if (minLength == 0) return &quot;&quot;;</span><br><span class="line">    int end = 1;</span><br><span class="line">    for (; end &lt;= minLength ; end++) &#123;</span><br><span class="line">        for (String str : strs) &#123;</span><br><span class="line">            // 每次循环和strs[0]比较</span><br><span class="line">            String temp = strs[0].substring(0, end);</span><br><span class="line">            if (!str.substring(0, end).equals(temp))</span><br><span class="line">                return strs[0].substring(0, end - 1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return strs[0].substring(0, end - 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    String[] strs = &#123;&quot;felle&quot;, &quot;felleasdgasdg&quot;, &quot;felleasdg&quot;&#125;;</span><br><span class="line">    // longest common prefix:felle</span><br><span class="line">    System.out.println(&quot;longest common prefix:&quot; + new LongestCommonPrefix().longestCommonPrefix(strs));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -280,7 +284,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/14/LeetCode-Easy-Palindrome-Number/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/18/LeetCode-Longest-Common-Prefix/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +298,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/15/LeetCode-Easy-Roman-to-Integer/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          LeetCode - Roman to Integer
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/12/LeetCode-Easy-Reverse-Integer/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LeetCode-Easy Reverse Integer</div>
+    <a href="/2019/03/15/LeetCode-Easy-Roman-to-Integer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LeetCode - Roman to Integer</div>
       <i class="icon-circle-right"></i>
     </a>
   
