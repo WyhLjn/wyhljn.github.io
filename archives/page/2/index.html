@@ -6,22 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Spring如何通过ClassPathXmlApplicationContext初始化Bean | Hui</title>
+  <title>Archives | Hui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="懒癌重症患者真是没得治，拖了这么久终于有勇气开始写了。之前对spring框架的理解都是一知半解、碎片化的，没有系统的真正了解过的spring知识体系，还是停留在使用的阶段。作为CRUD了几年的猿，水平这么菜也是没谁了（好多大学生已经对源码如数家珍了，而我才开始看spring源码。。。）。不管怎么样，从现在开始，总比从未来开始要好，现在即是起点（谁让之前那么懒了，希望这样能鼓励自己，坚持下去：））">
-<meta name="keywords" content="Java,Spring,源码">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spring如何通过ClassPathXmlApplicationContext初始化Bean">
-<meta property="og:url" content="http://yoursite.com/2018/04/22/Spring如何通过ClassPathXmlApplicationContext初始化Bean/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hui">
+<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
 <meta property="og:site_name" content="Hui">
-<meta property="og:description" content="懒癌重症患者真是没得治，拖了这么久终于有勇气开始写了。之前对spring框架的理解都是一知半解、碎片化的，没有系统的真正了解过的spring知识体系，还是停留在使用的阶段。作为CRUD了几年的猿，水平这么菜也是没谁了（好多大学生已经对源码如数家珍了，而我才开始看spring源码。。。）。不管怎么样，从现在开始，总比从未来开始要好，现在即是起点（谁让之前那么懒了，希望这样能鼓励自己，坚持下去：））">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/ad274f89ly1g0u6nkicy6j20rh07pt9n.jpg">
-<meta property="og:updated_time" content="2019-03-18T11:23:21.276Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring如何通过ClassPathXmlApplicationContext初始化Bean">
-<meta name="twitter:description" content="懒癌重症患者真是没得治，拖了这么久终于有勇气开始写了。之前对spring框架的理解都是一知半解、碎片化的，没有系统的真正了解过的spring知识体系，还是停留在使用的阶段。作为CRUD了几年的猿，水平这么菜也是没谁了（好多大学生已经对源码如数家珍了，而我才开始看spring源码。。。）。不管怎么样，从现在开始，总比从未来开始要好，现在即是起点（谁让之前那么懒了，希望这样能鼓励自己，坚持下去：））">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/ad274f89ly1g0u6nkicy6j20rh07pt9n.jpg">
+<meta name="twitter:title" content="Hui">
   
     <link rel="alternative" href="/atom.xml" title="Hui" type="application/atom+xml">
   
@@ -163,91 +156,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spring如何通过ClassPathXmlApplicationContext初始化Bean" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Spring如何通过ClassPathXmlApplicationContext初始化Bean
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/04/22/Spring如何通过ClassPathXmlApplicationContext初始化Bean/" class="archive-article-date">
+  	<time datetime="2018-04-22T12:57:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/04/22/Spring如何通过ClassPathXmlApplicationContext初始化Bean/">Spring如何通过ClassPathXmlApplicationContext初始化Bean</a>
     </h1>
   
 
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2018/04/22/Spring如何通过ClassPathXmlApplicationContext初始化Bean/" class="archive-article-date">
-  	<time datetime="2018-04-22T12:57:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>懒癌重症患者真是没得治，拖了这么久终于有勇气开始写了。之前对spring框架的理解都是一知半解、碎片化的，没有系统的真正了解过的spring知识体系，还是停留在使用的阶段。作为CRUD了几年的猿，水平这么菜也是没谁了（好多大学生已经对源码如数家珍了，而我才开始看spring源码。。。）。不管怎么样，从现在开始，总比从未来开始要好，现在即是起点（谁让之前那么懒了，希望这样能鼓励自己，坚持下去：）），希望自己的程序猿生涯能从现在开始开始不一样，即便是一点小小的改变。每个人的资质不一样，我属于笨的那种，记忆力还不好，这都不是理由，努力是自己的，未来也是自己的，生活是自己的。不怕自己的生涯如何，只希望能和以前不一样，不管别人取得多大的成就，不羡慕，不嫉妒，走好自己的路，过程和结果好或坏都是自己的，就酱……</p>
-</blockquote>
-<p>—————————————分割线—————————————————-</p>
-<blockquote>
-<p>本文主要介绍如何通过<strong>ClassPathXmlApplicationContext</strong>加载Spring Beans</p>
-<ul>
-<li>什么是ClassPathXmlApplicationContext<br>Standalone XML application context, taking the context definition files from the class path, interpreting plain paths as class path resource names that include the package path (e.g. “mypackage/myresource.txt”). Useful for test harnesses as well as for application contexts embedded within JARs.</li>
-</ul>
-</blockquote>
-<p>这是spring源码里给出的定义。它是独立的XML应用上下文，从classpath里得到上下文定义文件，将纯路径解释为包含包路径的classpath路径名称<br><a id="more"></a></p>
-<ul>
-<li>调用ClassPathXmlApplicationContext构造方法</li>
-</ul>
-<p>先看下ClassPathXmlApplicationContext类的继承关系（不得不吐槽下有道云笔记，上传图片不能直接粘贴，还非得分享了才行）</p>
-<p><img src="http://ww1.sinaimg.cn/large/ad274f89ly1g0u6nkicy6j20rh07pt9n.jpg" alt></p>
-<p>ClassPathXmlApplicationContext继承了AbstractXmlApplicationContext类，而AbstractXmlApplicationContext又继承了AbstractApplicationContext，refresh正是这个类的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent)</span><br><span class="line">			throws BeansException &#123;</span><br><span class="line"></span><br><span class="line">		super(parent);</span><br><span class="line">		setConfigLocations(configLocations);</span><br><span class="line">		// 为true会自动刷新上下文</span><br><span class="line">		if (refresh) &#123;</span><br><span class="line">			refresh();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-<p>众所周知，refresh方法是关键，现在看下refresh方法干了啥</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void refresh() throws BeansException, IllegalStateException &#123;</span><br><span class="line">    // refresh和destory共用一把同步锁</span><br><span class="line">	synchronized (this.startupShutdownMonitor) &#123;</span><br><span class="line">		// Prepare this context for refreshing.</span><br><span class="line">		prepareRefresh();</span><br><span class="line"></span><br><span class="line">		// Tell the subclass to refresh the internal bean factory.</span><br><span class="line">		ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();</span><br><span class="line"></span><br><span class="line">		// Prepare the bean factory for use in this context.</span><br><span class="line">		prepareBeanFactory(beanFactory);</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			// Allows post-processing of the bean factory in context subclasses.</span><br><span class="line">			postProcessBeanFactory(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Invoke factory processors registered as beans in the context.</span><br><span class="line">			invokeBeanFactoryPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Register bean processors that intercept bean creation.</span><br><span class="line">			registerBeanPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Initialize message source for this context.</span><br><span class="line">			initMessageSource();</span><br><span class="line"></span><br><span class="line">			// Initialize event multicaster for this context.</span><br><span class="line">			initApplicationEventMulticaster();</span><br><span class="line"></span><br><span class="line">			// Initialize other special beans in specific context subclasses.</span><br><span class="line">			onRefresh();</span><br><span class="line"></span><br><span class="line">			// Check for listener beans and register them.</span><br><span class="line">			registerListeners();</span><br><span class="line"></span><br><span class="line">			// Instantiate all remaining (non-lazy-init) singletons.</span><br><span class="line">			finishBeanFactoryInitialization(beanFactory);</span><br><span class="line"></span><br><span class="line">			// Last step: publish corresponding event.</span><br><span class="line">			finishRefresh();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		catch (BeansException ex) &#123;</span><br><span class="line">			logger.warn(&quot;Exception encountered during context initialization - cancelling refresh attempt&quot;, ex);</span><br><span class="line"></span><br><span class="line">			// Destroy already created singletons to avoid dangling resources.</span><br><span class="line">			destroyBeans();</span><br><span class="line"></span><br><span class="line">			// Reset &apos;active&apos; flag.</span><br><span class="line">			cancelRefresh(ex);</span><br><span class="line"></span><br><span class="line">			// Propagate exception to caller.</span><br><span class="line">			throw ex;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>茫茫多的方法，一个一个看下每个方法都做了什么</p>
-<ol>
-<li>prepareRefresh</li>
-</ol>
-<p>这个方法简单，做了一些初始准备，设定开始时间，激活标识等</p>
-<ol>
-<li>第二步很重要，bean注册到factory就是在这里处理的，重点看下</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected final void refreshBeanFactory() throws BeansException &#123;</span><br><span class="line">    // 如果已经初始化了bean factory，从内存中循环销毁bean，并清空bean factory</span><br><span class="line">	if (hasBeanFactory()) &#123;</span><br><span class="line">		destroyBeans();</span><br><span class="line">		closeBeanFactory();</span><br><span class="line">	&#125;</span><br><span class="line">	try &#123;</span><br><span class="line">		DefaultListableBeanFactory beanFactory = createBeanFactory();</span><br><span class="line">		beanFactory.setSerializationId(getId());</span><br><span class="line">		customizeBeanFactory(beanFactory);</span><br><span class="line">		// 加载beans</span><br><span class="line">		loadBeanDefinitions(beanFactory);</span><br><span class="line">		synchronized (this.beanFactoryMonitor) &#123;</span><br><span class="line">			this.beanFactory = beanFactory;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	catch (IOException ex) &#123;</span><br><span class="line">		throw new ApplicationContextException(&quot;I/O error parsing bean definition source for &quot; + getDisplayName(), ex);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>先创建了bean factory，类型是DefaultListableBeanFactory。接下来重头戏来了，先看代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) throws BeansException, IOException &#123;</span><br><span class="line">	// Create a new XmlBeanDefinitionReader for the given BeanFactory.</span><br><span class="line">	// bean都是从xml文件加载的</span><br><span class="line">	XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);</span><br><span class="line"></span><br><span class="line">	// Configure the bean definition reader with this context&apos;s</span><br><span class="line">	// resource loading environment.</span><br><span class="line">	beanDefinitionReader.setEnvironment(this.getEnvironment());</span><br><span class="line">	beanDefinitionReader.setResourceLoader(this);</span><br><span class="line">	beanDefinitionReader.setEntityResolver(new ResourceEntityResolver(this));</span><br><span class="line"></span><br><span class="line">	// Allow a subclass to provide custom initialization of the reader,</span><br><span class="line">	// then proceed with actually loading the bean definitions.</span><br><span class="line">	// 注释已经说得很明白了，你要初始化bean，当然先要把xml reader准备好了，得先让给你干活的准备好了，人家才能帮你初始化。不过貌似也没干啥。。</span><br><span class="line">	initBeanDefinitionReader(beanDefinitionReader);</span><br><span class="line">	// 真正初始化在这</span><br><span class="line">	loadBeanDefinitions(beanDefinitionReader);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>逐步揭开bean加载的神秘面纱，接着看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">protected void loadBeanDefinitions(XmlBeanDefinitionReader reader) throws BeansException, IOException &#123;</span><br><span class="line">	Resource[] configResources = getConfigResources();</span><br><span class="line">	if (configResources != null) &#123;</span><br><span class="line">		reader.loadBeanDefinitions(configResources);</span><br><span class="line">	&#125;</span><br><span class="line">	// 这里就是初始化ClassPathXmlApplicationContext时指定的xml文件</span><br><span class="line">	String[] configLocations = getConfigLocations();</span><br><span class="line">	if (configLocations != null) &#123;</span><br><span class="line">	    // reader开始加载bean了</span><br><span class="line">		reader.loadBeanDefinitions(configLocations);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接着看吧，还没到具体如何加载的地方（外国人写的就是好，鼓掌）<br>关键的方法都在XmlBeanDefinitionReader里，接下来就是通过读xml的方式从指定的xml文件里读取bean</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@SuppressWarnings(&quot;deprecation&quot;)</span><br><span class="line">public int registerBeanDefinitions(Document doc, Resource resource) throws BeanDefinitionStoreException &#123;</span><br><span class="line">    // 获得document reader时，需要获得spring namespace hander</span><br><span class="line">	BeanDefinitionDocumentReader documentReader = createBeanDefinitionDocumentReader();</span><br><span class="line">	documentReader.setEnvironment(getEnvironment());</span><br><span class="line">	int countBefore = getRegistry().getBeanDefinitionCount();</span><br><span class="line">	documentReader.registerBeanDefinitions(doc, createReaderContext(resource));</span><br><span class="line">	return getRegistry().getBeanDefinitionCount() - countBefore;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>解析之前，需要获得指定的namespace handler，默认的handler在META-INF/spring.handlers路径下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">protected void doRegisterBeanDefinitions(Element root) &#123;</span><br><span class="line">	BeanDefinitionParserDelegate parent = this.delegate;</span><br><span class="line">	this.delegate = createDelegate(getReaderContext(), root, parent);</span><br><span class="line"></span><br><span class="line">	if (this.delegate.isDefaultNamespace(root)) &#123;</span><br><span class="line">		String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);</span><br><span class="line">		if (StringUtils.hasText(profileSpec)) &#123;</span><br><span class="line">			String[] specifiedProfiles = StringUtils.tokenizeToStringArray(</span><br><span class="line">					profileSpec, BeanDefinitionParserDelegate.MULTI_VALUE_ATTRIBUTE_DELIMITERS);</span><br><span class="line">			if (!getReaderContext().getEnvironment().acceptsProfiles(specifiedProfiles)) &#123;</span><br><span class="line">				return;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	preProcessXml(root);</span><br><span class="line">	parseBeanDefinitions(root, this.delegate);</span><br><span class="line">	postProcessXml(root);</span><br><span class="line"></span><br><span class="line">	this.delegate = parent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在解析bean之前，会先创建delegate，delegate是用来解析xml bean的（后面会看见这个delegate有多重要）。创建delegate时，会初始化beans节点lazy-init、autowire等属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) &#123;</span><br><span class="line">	if (delegate.isDefaultNamespace(root)) &#123;</span><br><span class="line">		NodeList nl = root.getChildNodes();</span><br><span class="line">		for (int i = 0; i &lt; nl.getLength(); i++) &#123;</span><br><span class="line">			Node node = nl.item(i);</span><br><span class="line">			if (node instanceof Element) &#123;</span><br><span class="line">				Element ele = (Element) node;</span><br><span class="line">				// handle spring namespace</span><br><span class="line">				if (delegate.isDefaultNamespace(ele)) &#123;</span><br><span class="line">					parseDefaultElement(ele, delegate);</span><br><span class="line">				&#125;</span><br><span class="line">				else &#123;</span><br><span class="line">					delegate.parseCustomElement(ele);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		delegate.parseCustomElement(root);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这里会循环解析beans下的各个节点，每个节点都有自己的namespace，默认的namespace是<a href="http://www.springframework.org/schema/beans。先看下不是默认namespace的节点是如何解析的。" target="_blank" rel="noopener">http://www.springframework.org/schema/beans。先看下不是默认namespace的节点是如何解析的。</a></p>
-<p>先获得节点对应的namespace，从<strong>META-INF/spring.handlers</strong>获得所有的mappings。然后取得namespace对应的handler。例如aop对应的handler是http\://www.springframework.org/schema/aop=org.springframework.aop.config.AopNamespaceHandler</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public NamespaceHandler resolve(String namespaceUri) &#123;</span><br><span class="line">	Map&lt;String, Object&gt; handlerMappings = getHandlerMappings();</span><br><span class="line">	Object handlerOrClassName = handlerMappings.get(namespaceUri);</span><br><span class="line">	if (handlerOrClassName == null) &#123;</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	else if (handlerOrClassName instanceof NamespaceHandler) &#123;</span><br><span class="line">		return (NamespaceHandler) handlerOrClassName;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		String className = (String) handlerOrClassName;</span><br><span class="line">		try &#123;</span><br><span class="line">			Class&lt;?&gt; handlerClass = ClassUtils.forName(className, this.classLoader);</span><br><span class="line">			if (!NamespaceHandler.class.isAssignableFrom(handlerClass)) &#123;</span><br><span class="line">				throw new FatalBeanException(&quot;Class [&quot; + className + &quot;] for namespace [&quot; + namespaceUri +</span><br><span class="line">						&quot;] does not implement the [&quot; + NamespaceHandler.class.getName() + &quot;] interface&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">			NamespaceHandler namespaceHandler = (NamespaceHandler) BeanUtils.instantiateClass(handlerClass);</span><br><span class="line">			// 为节点的每个element注册parser</span><br><span class="line">			namespaceHandler.init();</span><br><span class="line">			// 覆盖mapping，value改为经过parser解析的handler</span><br><span class="line">			handlerMappings.put(namespaceUri, namespaceHandler);</span><br><span class="line">			return namespaceHandler;</span><br><span class="line">		&#125;</span><br><span class="line">		catch (ClassNotFoundException ex) &#123;</span><br><span class="line">			throw new FatalBeanException(&quot;NamespaceHandler class [&quot; + className + &quot;] for namespace [&quot; +</span><br><span class="line">					namespaceUri + &quot;] not found&quot;, ex);</span><br><span class="line">		&#125;</span><br><span class="line">		catch (LinkageError err) &#123;</span><br><span class="line">			throw new FatalBeanException(&quot;Invalid NamespaceHandler class [&quot; + className + &quot;] for namespace [&quot; +</span><br><span class="line">					namespaceUri + &quot;]: problem with handler class file or dependent class&quot;, err);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public BeanDefinition parseCustomElement(Element ele, BeanDefinition containingBd) &#123;</span><br><span class="line">	String namespaceUri = getNamespaceURI(ele);</span><br><span class="line">	// 找到namespace对应的handler</span><br><span class="line">	NamespaceHandler handler = this.readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);</span><br><span class="line">	if (handler == null) &#123;</span><br><span class="line">		error(&quot;Unable to locate Spring NamespaceHandler for XML schema namespace [&quot; + namespaceUri + &quot;]&quot;, ele);</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	return handler.parse(ele, new ParserContext(this.readerContext, this, containingBd));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面在namespaceHandler.init()的是时候已经注册了parser，现在只需根据element找到对应的parser。这块就先不说了，言归正传</p>
-<p>下面看下spring 默认namespace下bean元素是如何解析的（终于要开始解析了。。）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) &#123;</span><br><span class="line">	if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) &#123;</span><br><span class="line">		importBeanDefinitionResource(ele);</span><br><span class="line">	&#125;</span><br><span class="line">	else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) &#123;</span><br><span class="line">		processAliasRegistration(ele);</span><br><span class="line">	&#125;</span><br><span class="line">	// 解析bean类型的元素</span><br><span class="line">	else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) &#123;</span><br><span class="line">		processBeanDefinition(ele, delegate);</span><br><span class="line">	&#125;</span><br><span class="line">	else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) &#123;</span><br><span class="line">		// recurse</span><br><span class="line">		doRegisterBeanDefinitions(ele);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) &#123;</span><br><span class="line">    // 每个beanDefinition都被封装成了beanDefinitionHolder，beanDefinition就是在这里生成的</span><br><span class="line">	BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);</span><br><span class="line">	if (bdHolder != null) &#123;</span><br><span class="line">		bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);</span><br><span class="line">		try &#123;</span><br><span class="line">			// 在这里把bean注册到factory里</span><br><span class="line">			BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());</span><br><span class="line">		&#125;</span><br><span class="line">		catch (BeanDefinitionStoreException ex) &#123;</span><br><span class="line">			getReaderContext().error(&quot;Failed to register bean definition with name &apos;&quot; +</span><br><span class="line">					bdHolder.getBeanName() + &quot;&apos;&quot;, ele, ex);</span><br><span class="line">		&#125;</span><br><span class="line">		// Send registration event.</span><br><span class="line">		getReaderContext().fireComponentRegistered(new BeanComponentDefinition(bdHolder));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>下面看下是如何生成beanDefiniitionHolder的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, BeanDefinition containingBean) &#123;</span><br><span class="line">	String id = ele.getAttribute(ID_ATTRIBUTE);</span><br><span class="line">	String nameAttr = ele.getAttribute(NAME_ATTRIBUTE);</span><br><span class="line"></span><br><span class="line">	List&lt;String&gt; aliases = new ArrayList&lt;String&gt;();</span><br><span class="line">	if (StringUtils.hasLength(nameAttr)) &#123;</span><br><span class="line">		String[] nameArr = StringUtils.tokenizeToStringArray(nameAttr, MULTI_VALUE_ATTRIBUTE_DELIMITERS);</span><br><span class="line">		aliases.addAll(Arrays.asList(nameArr));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	String beanName = id;</span><br><span class="line">	if (!StringUtils.hasText(beanName) &amp;&amp; !aliases.isEmpty()) &#123;</span><br><span class="line">		beanName = aliases.remove(0);</span><br><span class="line">		if (logger.isDebugEnabled()) &#123;</span><br><span class="line">			logger.debug(&quot;No XML &apos;id&apos; specified - using &apos;&quot; + beanName +</span><br><span class="line">					&quot;&apos; as bean name and &quot; + aliases + &quot; as aliases&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if (containingBean == null) &#123;</span><br><span class="line">	    // 校验beanName 和别名是否用过，把当前beanName和alias加入usedNames集合</span><br><span class="line">		checkNameUniqueness(beanName, aliases, ele);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">       // 在这里创建beanDefinition</span><br><span class="line">	AbstractBeanDefinition beanDefinition = parseBeanDefinitionElement(ele, beanName, containingBean);</span><br><span class="line">	if (beanDefinition != null) &#123;</span><br><span class="line">		if (!StringUtils.hasText(beanName)) &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">			    // 生成beanName</span><br><span class="line">				if (containingBean != null) &#123;</span><br><span class="line">					beanName = BeanDefinitionReaderUtils.generateBeanName(</span><br><span class="line">							beanDefinition, this.readerContext.getRegistry(), true);</span><br><span class="line">				&#125;</span><br><span class="line">				else &#123;</span><br><span class="line">					beanName = this.readerContext.generateBeanName(beanDefinition);</span><br><span class="line">					// Register an alias for the plain bean class name, if still possible,</span><br><span class="line">					// if the generator returned the class name plus a suffix.</span><br><span class="line">					// This is expected for Spring 1.2/2.0 backwards compatibility.</span><br><span class="line">					String beanClassName = beanDefinition.getBeanClassName();</span><br><span class="line">					if (beanClassName != null &amp;&amp;</span><br><span class="line">							beanName.startsWith(beanClassName) &amp;&amp; beanName.length() &gt; beanClassName.length() &amp;&amp;</span><br><span class="line">							!this.readerContext.getRegistry().isBeanNameInUse(beanClassName)) &#123;</span><br><span class="line">						aliases.add(beanClassName);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				if (logger.isDebugEnabled()) &#123;</span><br><span class="line">					logger.debug(&quot;Neither XML &apos;id&apos; nor &apos;name&apos; specified - &quot; +</span><br><span class="line">							&quot;using generated bean name [&quot; + beanName + &quot;]&quot;);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			catch (Exception ex) &#123;</span><br><span class="line">				error(ex.getMessage(), ele);</span><br><span class="line">				return null;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		String[] aliasesArray = StringUtils.toStringArray(aliases);</span><br><span class="line">		return new BeanDefinitionHolder(beanDefinition, beanName, aliasesArray);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>看下具体是如何创建beanDefinition的（终于找到你了），该方法在<em>BeanDefinitionParserDelegate</em>里。到这里就一目了然了，先初始化了beanDefinition，然后解析bean的元素，再一步一步解析child节点，比如配置文件properties的解析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">public AbstractBeanDefinition parseBeanDefinitionElement(</span><br><span class="line">		Element ele, String beanName, BeanDefinition containingBean) &#123;</span><br><span class="line">       // 当前bean入栈</span><br><span class="line">	this.parseState.push(new BeanEntry(beanName));</span><br><span class="line"></span><br><span class="line">	String className = null;</span><br><span class="line">	if (ele.hasAttribute(CLASS_ATTRIBUTE)) &#123;</span><br><span class="line">		className = ele.getAttribute(CLASS_ATTRIBUTE).trim();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	try &#123;</span><br><span class="line">		String parent = null;</span><br><span class="line">		if (ele.hasAttribute(PARENT_ATTRIBUTE)) &#123;</span><br><span class="line">			parent = ele.getAttribute(PARENT_ATTRIBUTE);</span><br><span class="line">		&#125;</span><br><span class="line">		// 初始化beanDefinition，设定了bean class name和 parent name</span><br><span class="line">		AbstractBeanDefinition bd = createBeanDefinition(className, parent);</span><br><span class="line">           </span><br><span class="line">           // 解析bean元素的各种属性，比如scope，lazyInit</span><br><span class="line">		parseBeanDefinitionAttributes(ele, beanName, containingBean, bd);</span><br><span class="line">		bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));</span><br><span class="line"></span><br><span class="line">		parseMetaElements(ele, bd);</span><br><span class="line">		parseLookupOverrideSubElements(ele, bd.getMethodOverrides());</span><br><span class="line">		parseReplacedMethodSubElements(ele, bd.getMethodOverrides());</span><br><span class="line"></span><br><span class="line">           // 解析构造函数</span><br><span class="line">		parseConstructorArgElements(ele, bd);</span><br><span class="line">		</span><br><span class="line">		// 解析properties，经常用来加载配置文件</span><br><span class="line">		parsePropertyElements(ele, bd);</span><br><span class="line">		parseQualifierElements(ele, bd);</span><br><span class="line"></span><br><span class="line">		bd.setResource(this.readerContext.getResource());</span><br><span class="line">		bd.setSource(extractSource(ele));</span><br><span class="line"></span><br><span class="line">		return bd;</span><br><span class="line">	&#125;</span><br><span class="line">	catch (ClassNotFoundException ex) &#123;</span><br><span class="line">		error(&quot;Bean class [&quot; + className + &quot;] not found&quot;, ele, ex);</span><br><span class="line">	&#125;</span><br><span class="line">	catch (NoClassDefFoundError err) &#123;</span><br><span class="line">		error(&quot;Class that bean class [&quot; + className + &quot;] depends on not found&quot;, ele, err);</span><br><span class="line">	&#125;</span><br><span class="line">	catch (Throwable ex) &#123;</span><br><span class="line">		error(&quot;Unexpected failure during bean definition parsing&quot;, ele, ex);</span><br><span class="line">	&#125;</span><br><span class="line">	finally &#123;</span><br><span class="line">	    // 解析完成从栈里弹出</span><br><span class="line">		this.parseState.pop();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后再看下bean是如何注册factory的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static void registerBeanDefinition(</span><br><span class="line">		BeanDefinitionHolder definitionHolder, BeanDefinitionRegistry registry)</span><br><span class="line">		throws BeanDefinitionStoreException &#123;</span><br><span class="line"></span><br><span class="line">	// Register bean definition under primary name.</span><br><span class="line">	String beanName = definitionHolder.getBeanName();</span><br><span class="line">	registry.registerBeanDefinition(beanName, definitionHolder.getBeanDefinition());</span><br><span class="line"></span><br><span class="line">	// Register aliases for bean name, if any.</span><br><span class="line">	String[] aliases = definitionHolder.getAliases();</span><br><span class="line">	if (aliases != null) &#123;</span><br><span class="line">		for (String alias : aliases) &#123;</span><br><span class="line">			registry.registerAlias(beanName, alias);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注册到<em>DefaultListableBeanFactory</em>时需要校验当前beanName是否注册过了，如果注册过的话，能否支持覆盖。如果bean已经注册过，或者已经存在单例的话，需要清除单例和缓存</p>
-<p>至此bean的注册过程已经完事了，后续文章再看下refresh的其他方法</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -267,7 +205,7 @@
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -284,123 +222,20 @@
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/22/Spring如何通过ClassPathXmlApplicationContext初始化Bean/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/05/14/Spring上下文初始化时调用BeanFactoryPostProcessor的过程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Spring上下文初始化时调用BeanFactoryPostProcessor的过程
-        
-      </div>
-    </a>
   
   
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-    <section id="comments">
-      <div id="disqus_thread"></div>
-        <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'true'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section>
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -428,8 +263,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
