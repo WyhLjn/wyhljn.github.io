@@ -39,9 +39,9 @@ Node定义了两个常量，分别标识独占式和共享式
 
 ### 源码分析
 
-- #### acquire(int arg)
+- #### acquire
 
-```
+```java
 public final void acquire(int arg) {
     if (!tryAcquire(arg) &&
         acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
@@ -56,7 +56,7 @@ public final void acquire(int arg) {
 
 - #### tryAcquire
 
-```
+```java
 protected boolean tryAcquire(int arg) {
     throw new UnsupportedOperationException();
 }
@@ -65,7 +65,7 @@ protected boolean tryAcquire(int arg) {
 
 - #### addWaiter
 
-```
+```java
 private Node addWaiter(Node mode) {
     // 新建一个节点
     Node node = new Node(Thread.currentThread(), mode);
@@ -87,7 +87,7 @@ private Node addWaiter(Node mode) {
 
 - #### enq
 
-```
+```java
 private Node enq(final Node node) {
     // 无限循环直到插入成功才返回该节点
     for (;;) {
@@ -111,7 +111,7 @@ private Node enq(final Node node) {
 
 - #### acquireQueued
 
-```
+```java
 final boolean acquireQueued(final Node node, int arg) {
     boolean failed = true;
     try {
@@ -139,7 +139,7 @@ final boolean acquireQueued(final Node node, int arg) {
 
 - #### shouldParkAfterFailedAcquire
 
-```
+```java
 private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
     int ws = pred.waitStatus;
     if (ws == Node.SIGNAL)
@@ -177,7 +177,7 @@ private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
 
 - #### parkAndCheckInterrupt
 
-```
+```java
 private final boolean parkAndCheckInterrupt() {
     LockSupport.park(this);
     return Thread.interrupted();
@@ -207,7 +207,7 @@ public static void park(Object blocker) {
 
 - #### release
 
-```
+```java
 public final boolean release(int arg) {
     if (tryRelease(arg)) {
         Node h = head;
@@ -220,7 +220,7 @@ public final boolean release(int arg) {
 ```
 先调用自定义同步器重写的*tryRelease*方法，如果成功的话，唤醒后继节点。
 
-```
+```java
 private void unparkSuccessor(Node node) {
     /*
      * If status is negative (i.e., possibly needing signal) try
@@ -256,7 +256,7 @@ release的过程还是比较简单的，头节点改为初始状态，如果头�
 接下来看下共享式是如何获取资源的
 - #### acquireShared
 
-```
+```java
 public final void acquireShared(int arg) {
     if (tryAcquireShared(arg) < 0)
         doAcquireShared(arg);
@@ -266,7 +266,7 @@ public final void acquireShared(int arg) {
 
 - #### doAcquireShared
 
-```
+```java
 private void doAcquireShared(int arg) {
     // 新建一个节点接入等待队列
     final Node node = addWaiter(Node.SHARED);
@@ -303,7 +303,7 @@ private void doAcquireShared(int arg) {
 
 - #### setHeadAndPropagate
 
-```
+```java
 private void setHeadAndPropagate(Node node, int propagate) {
     Node h = head; // Record old head for check below
     // 当前节点设为头节点
@@ -336,7 +336,7 @@ private void setHeadAndPropagate(Node node, int propagate) {
 
 - #### doReleaseShared
 
-```
+```java
 private void doReleaseShared() {
     /*
      * Ensure that a release propagates, even if there are other
@@ -373,7 +373,7 @@ private void doReleaseShared() {
 
 - #### releaseShared
 
-```
+```java
 public final boolean releaseShared(int arg) {
     // 尝试释放资源，返回true或者false
     if (tryReleaseShared(arg)) {
