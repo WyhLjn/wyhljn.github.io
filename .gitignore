@@ -5,6 +5,6 @@ db.json
 
 node_modules/
 public/
-themes/
+themes/*
 .deploy*/
 package.json
