@@ -45,8 +45,7 @@ tags:
 ---
 <!-- more -->
 
-
-```
+```java
 public boolean isValid(String s) {
     if (null == s | "" == s || s.toCharArray().length == 1) return false;
 

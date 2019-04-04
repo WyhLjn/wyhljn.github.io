@@ -59,7 +59,7 @@ tags:
 
 <!-- more -->
 
-```
+```java
 public int romanToInt(String s) {
     Map<Character, Integer> romanMap = new HashMap<>();
     romanMap.put('I', 1);

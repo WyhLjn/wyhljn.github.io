@@ -29,7 +29,7 @@ tags:
 ---
 
 
-```
+```java
 public boolean isPalindrome(int x) {
     // 负数，小数都不是回文
     if (x < 0 || (x % 10 == 0 && x != 0)) return false;

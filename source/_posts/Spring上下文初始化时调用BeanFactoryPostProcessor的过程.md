@@ -21,7 +21,8 @@ tags:
 它能够修改应用上下文的bean定义,应用上下文能自动检测bean定义中的*BeanFactoryPostProcessor*，并且在创建其它bean之前执行processor。
 
 *BeanFactoryPostProcessor*只有一个方法。
-```
+
+```java
 	/**
 	 * Modify the application context's internal bean factory after its standard
 	 * initialization. All bean definitions will have been loaded, but no beans
@@ -36,7 +37,7 @@ tags:
 
 上下文初始化后，修改上下文的bean factory。所有bean定义已经加载，但是还没有初始化。可以重写或者添加属性，甚至对bean热初始化。
 
-```
+```java
 	public static void invokeBeanFactoryPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, List<BeanFactoryPostProcessor> beanFactoryPostProcessors) {
 
@@ -91,7 +92,7 @@ tags:
 下面看下**BeanDefinitionRegistryPostProcessors**的执行过程
 
 
-```
+```java
 	/**
 	 * Build and validate a configuration model based on the registry of
 	 * {@link Configuration} classes.
@@ -191,7 +192,7 @@ tags:
 ```
 接着看下parse方法的具体实现过程
 
-```
+```java
 	protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass) throws IOException {
 		// Recursively process any member (nested) classes first
 		processMemberClasses(configClass, sourceClass);
@@ -260,7 +261,7 @@ tags:
 可以看到，在parse方法里依次处理@**PropertySource** @**ComponentScan** @**Import** @**ImportResource**注解解析之后，由*ConfigurationClassBeanDefinitionReader*依次加载 bean 定义
 
 
-```
+```java
 	private void loadBeanDefinitionsForConfigurationClass(ConfigurationClass configClass,
 			TrackedConditionEvaluator trackedConditionEvaluator) {
 

@@ -24,7 +24,7 @@ tags:
 
 <!-- more -->
 
-```
+```java
 
 public static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();

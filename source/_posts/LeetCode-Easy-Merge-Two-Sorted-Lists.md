@@ -18,7 +18,7 @@ tags:
 
 ---
 
-```
+```java
 public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
     ListNode newList = new ListNode(-1);
     // 不会丢失头结点

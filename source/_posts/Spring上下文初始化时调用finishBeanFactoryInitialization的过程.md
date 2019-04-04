@@ -14,7 +14,7 @@ tags:
 这个方法将会初始化不是延迟加载的单例。
 
 
-```
+```java
 	@Override
 	public void preInstantiateSingletons() throws BeansException {
 		if (this.logger.isDebugEnabled()) {
@@ -79,7 +79,7 @@ tags:
 getBean调用了doGetBean方法
 
 
-```
+```java
 	protected <T> T doGetBean(
 			final String name, final Class<T> requiredType, final Object[] args, boolean typeCheckOnly)
 			throws BeansException {
@@ -235,7 +235,7 @@ createBean方法做了两件事
 - 调用beanPostProcessors的postProcessBeforeInstantiation和postProcessAfterInitialization
 - 创建bean实例
 
-```
+```java
 	protected Object createBean(final String beanName, final RootBeanDefinition mbd, final Object[] args)
 			throws BeanCreationException {
 
@@ -275,7 +275,7 @@ createBean方法做了两件事
 ```
 看下doCreateBean方法做了什么事
 
-```
+```java
 	protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final Object[] args) {
 		// Instantiate the bean.
 		BeanWrapper instanceWrapper = null;
@@ -378,7 +378,7 @@ initializeBean总共做了两件重要的事
 - 调用invokeAwareMethods方法，这个下面说
 - 执行BeanPostProcessor的postProcessAfterInitialization
 
-```
+```java
 	protected Object initializeBean(final String beanName, final Object bean, RootBeanDefinition mbd) {
 		if (System.getSecurityManager() != null) {
 			AccessController.doPrivileged(new PrivilegedAction<Object>() {
@@ -415,7 +415,7 @@ initializeBean总共做了两件重要的事
 ```
 下面是调用bean的init-method方法
 
-```
+```java
 	protected void invokeInitMethods(String beanName, final Object bean, RootBeanDefinition mbd)
 			throws Throwable {
 

@@ -32,7 +32,7 @@ tags:
 
 <!-- more -->
 
-```
+```java
 public String longestCommonPrefix(String[] strs) {
 
     if (null == strs || strs.length == 0) return "";

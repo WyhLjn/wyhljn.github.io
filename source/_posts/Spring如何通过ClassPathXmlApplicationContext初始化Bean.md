@@ -26,7 +26,8 @@ tags:
 ![](http://ww1.sinaimg.cn/large/ad274f89ly1g0u6nkicy6j20rh07pt9n.jpg)
 
 ClassPathXmlApplicationContext继承了AbstractXmlApplicationContext类，而AbstractXmlApplicationContext又继承了AbstractApplicationContext，refresh正是这个类的方法
-```
+
+```java
 public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent)
 			throws BeansException {
 
@@ -40,7 +41,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 ```
 众所周知，refresh方法是关键，现在看下refresh方法干了啥
 
-```
+```java
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
 	    // refresh和destory共用一把同步锁
@@ -104,7 +105,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 这个方法简单，做了一些初始准备，设定开始时间，激活标识等
 2. 第二步很重要，bean注册到factory就是在这里处理的，重点看下
 
-```
+```java
 	@Override
 	protected final void refreshBeanFactory() throws BeansException {
 	    // 如果已经初始化了bean factory，从内存中循环销毁bean，并清空bean factory
@@ -129,7 +130,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 ```
 先创建了bean factory，类型是DefaultListableBeanFactory。接下来重头戏来了，先看代码
 
-```
+```java
 	@Override
 	protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) throws BeansException, IOException {
 		// Create a new XmlBeanDefinitionReader for the given BeanFactory.
@@ -152,7 +153,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 ```
 逐步揭开bean加载的神秘面纱，接着看
 
-```
+```java
 	protected void loadBeanDefinitions(XmlBeanDefinitionReader reader) throws BeansException, IOException {
 		Resource[] configResources = getConfigResources();
 		if (configResources != null) {
@@ -169,7 +170,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 接着看吧，还没到具体如何加载的地方（外国人写的就是好，鼓掌）
 关键的方法都在XmlBeanDefinitionReader里，接下来就是通过读xml的方式从指定的xml文件里读取bean
 
-```
+```java
 	@SuppressWarnings("deprecation")
 	public int registerBeanDefinitions(Document doc, Resource resource) throws BeanDefinitionStoreException {
 	    // 获得document reader时，需要获得spring namespace hander
@@ -182,7 +183,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 ```
 解析之前，需要获得指定的namespace handler，默认的handler在META-INF/spring.handlers路径下
 
-```
+```java
 	protected void doRegisterBeanDefinitions(Element root) {
 		BeanDefinitionParserDelegate parent = this.delegate;
 		this.delegate = createDelegate(getReaderContext(), root, parent);
@@ -207,7 +208,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 ```
 在解析bean之前，会先创建delegate，delegate是用来解析xml bean的（后面会看见这个delegate有多重要）。创建delegate时，会初始化beans节点lazy-init、autowire等属性
 
-```
+```java
 	protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
 		if (delegate.isDefaultNamespace(root)) {
 			NodeList nl = root.getChildNodes();
@@ -234,7 +235,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 
 先获得节点对应的namespace，从**META-INF/spring.handlers**获得所有的mappings。然后取得namespace对应的handler。例如aop对应的handler是http\://www.springframework.org/schema/aop=org.springframework.aop.config.AopNamespaceHandler
 
-```
+```java
 	@Override
 	public NamespaceHandler resolve(String namespaceUri) {
 		Map<String, Object> handlerMappings = getHandlerMappings();
@@ -273,7 +274,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 ```
 
 
-```
+```java
 	public BeanDefinition parseCustomElement(Element ele, BeanDefinition containingBd) {
 		String namespaceUri = getNamespaceURI(ele);
 		// 找到namespace对应的handler
@@ -289,7 +290,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 
 下面看下spring 默认namespace下bean元素是如何解析的（终于要开始解析了。。）
 
-```
+```java
 	private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) {
 		if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) {
 			importBeanDefinitionResource(ele);
@@ -307,7 +308,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 		}
 	}
 ```
-```
+```java
 	protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
 	    // 每个beanDefinition都被封装成了beanDefinitionHolder，beanDefinition就是在这里生成的
 		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
@@ -329,7 +330,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 
 下面看下是如何生成beanDefiniitionHolder的
 
-```
+```java
 	public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, BeanDefinition containingBean) {
 		String id = ele.getAttribute(ID_ATTRIBUTE);
 		String nameAttr = ele.getAttribute(NAME_ATTRIBUTE);
@@ -395,7 +396,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 ```
 看下具体是如何创建beanDefinition的（终于找到你了），该方法在*BeanDefinitionParserDelegate*里。到这里就一目了然了，先初始化了beanDefinition，然后解析bean的元素，再一步一步解析child节点，比如配置文件properties的解析
 
-```
+```java
 	public AbstractBeanDefinition parseBeanDefinitionElement(
 			Element ele, String beanName, BeanDefinition containingBean) {
         // 当前bean入栈
@@ -453,7 +454,7 @@ public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh,
 ```
 最后再看下bean是如何注册factory的
 
-```
+```java
 	public static void registerBeanDefinition(
 			BeanDefinitionHolder definitionHolder, BeanDefinitionRegistry registry)
 			throws BeanDefinitionStoreException {
