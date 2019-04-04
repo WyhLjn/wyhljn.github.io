@@ -1,5 +1,5 @@
 ---
-title: LeetCode Valid Parentheses
+title: LeetCode - Valid Parentheses
 date: 2019-03-19 18:54:04
 categories:
 - 工作

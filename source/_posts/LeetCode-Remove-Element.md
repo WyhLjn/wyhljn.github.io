@@ -1,5 +1,5 @@
 ---
-title: LeetCode Easy Remove Element
+title: LeetCode - Remove Element
 date: 2019-04-04 19:00:41
 categories:
 - 工作

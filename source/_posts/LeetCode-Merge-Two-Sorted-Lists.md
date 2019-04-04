@@ -1,5 +1,5 @@
 ---
-title: LeetCode-Easy Merge Two Sorted Lists
+title: LeetCode - Merge Two Sorted Lists
 date: 2019-03-22 19:10:14
 categories:
 - 工作

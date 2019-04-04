@@ -1,5 +1,5 @@
 ---
-title: LeetCode-Easy Reverse Integer
+title: LeetCode - Reverse Integer
 date: 2019-03-12 19:28:51
 categories:
 - 工作

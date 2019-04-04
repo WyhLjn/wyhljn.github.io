@@ -1,5 +1,5 @@
 ---
-title: LeetCode-Easy Two Sum
+title: LeetCode - Two Sum
 date: 2019-03-07 11:54:30
 categories:
 - 工作
