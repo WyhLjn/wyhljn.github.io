@@ -812,7 +812,7 @@ body {
 	left: 300px;
 	width: auto;
 	background: url("./img/article_bg.png");
-	background-repeat: repeat-y;
+	background-repeat: repeat;
 	background-size: contain;
 	opacity: 1
 }
