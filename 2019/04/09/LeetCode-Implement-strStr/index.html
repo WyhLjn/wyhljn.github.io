@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>LeetCode - Remove Element | Hui</title>
+  <title>LeetCode - Implement strStr | Hui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given an array nums and a value val, remove all instances of that value in-place and return the new length. Do not allocate extra space for another array, you must do this by modifying the input arra">
+  <meta name="description" content="Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. Example 1: Input: haystack = “hello”, needle = “ll”Output: 2Example 2: Inp">
 <meta name="keywords" content="LeetCode,Java,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode - Remove Element">
-<meta property="og:url" content="http://yoursite.com/2019/04/04/LeetCode-Remove-Element/index.html">
+<meta property="og:title" content="LeetCode - Implement strStr">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/LeetCode-Implement-strStr/index.html">
 <meta property="og:site_name" content="Hui">
-<meta property="og:description" content="Given an array nums and a value val, remove all instances of that value in-place and return the new length. Do not allocate extra space for another array, you must do this by modifying the input arra">
+<meta property="og:description" content="Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. Example 1: Input: haystack = “hello”, needle = “ll”Output: 2Example 2: Inp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-04T11:09:26.507Z">
+<meta property="og:updated_time" content="2019-04-09T10:04:19.005Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode - Remove Element">
-<meta name="twitter:description" content="Given an array nums and a value val, remove all instances of that value in-place and return the new length. Do not allocate extra space for another array, you must do this by modifying the input arra">
+<meta name="twitter:title" content="LeetCode - Implement strStr">
+<meta name="twitter:description" content="Implement strStr(). Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. Example 1: Input: haystack = “hello”, needle = “ll”Output: 2Example 2: Inp">
   
     <link rel="alternative" href="/atom.xml" title="Hui" type="application/atom+xml">
   
@@ -155,14 +155,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-LeetCode-Remove-Element" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-LeetCode-Implement-strStr" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      LeetCode - Remove Element
+      LeetCode - Implement strStr
     </h1>
   
 
@@ -170,8 +170,8 @@
   	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
 </a>
         
-        <a href="/2019/04/04/LeetCode-Remove-Element/" class="archive-article-date">
-  	<time datetime="2019-04-04T11:00:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-04</time>
+        <a href="/2019/04/09/LeetCode-Implement-strStr/" class="archive-article-date">
+  	<time datetime="2019-04-09T10:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
 </a>
         
       </header>
@@ -184,19 +184,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Given an array nums and a value val, remove all instances of that value in-place and return the new length.</p>
-<p>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.</p>
-<p>The order of elements can be changed. It doesn’t matter what you leave beyond the new length.</p>
+<p>Implement strStr().</p>
+<p>Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.</p>
 <p>Example 1:</p>
-<p>Given nums = [3,2,2,3], val = 3,</p>
-<p>Your function should return length = 2, with the first two elements of nums being 2.</p>
-<p>It doesn’t matter what you leave beyond the returned length.<br>Example 2:</p>
-<p>Given nums = [0,1,2,2,3,0,4,2], val = 2,</p>
-<p>Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.</p>
-<p>Note that the order of those five elements can be arbitrary.</p>
-<p>It doesn’t matter what values are set beyond the returned length.</p>
+<p>Input: haystack = “hello”, needle = “ll”<br>Output: 2<br>Example 2:</p>
+<p>Input: haystack = “aaaaa”, needle = “bba”<br>Output: -1</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] != val) &#123;</span><br><span class="line">            nums[pos] = nums[i];</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] nums = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="keyword">new</span> RemoveElement().removeElement(nums, <span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 1 0 4 5</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        System.out.println(nums[i] + <span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == haystack) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == needle || needle.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (needle.length() &gt; haystack.length()) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> m = haystack.length(), n = needle.length();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m - n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (haystack.charAt(i+j) != needle.charAt(j)) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (j == n) <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String str = <span class="string">"bcdefgabcdabc"</span>;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="keyword">new</span> ImplementStrStr().strStr(str, <span class="string">"abc"</span>);</span><br><span class="line">    <span class="comment">// index:6</span></span><br><span class="line">    System.out.println(<span class="string">"index:"</span> + index);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -284,7 +280,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/04/LeetCode-Remove-Element/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/04/09/LeetCode-Implement-strStr/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -298,18 +294,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/04/09/LeetCode-Implement-strStr/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          LeetCode - Implement strStr
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/04/02/LeetCode-Remove-Duplicates-from-Sorted-Array/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LeetCode - Remove Duplicates from Sorted Array </div>
+    <a href="/2019/04/04/LeetCode-Remove-Element/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LeetCode - Remove Element</div>
       <i class="icon-circle-right"></i>
     </a>
   
