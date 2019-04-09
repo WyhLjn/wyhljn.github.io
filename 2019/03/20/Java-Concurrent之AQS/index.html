@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hui">
 <meta property="og:description" content="Java里的AQS是许多同步器的基石，例如ReentrantLock，Semaphore。AQS提供了一个框架，依赖FIFO先进先出的等待队列实现阻塞锁和同步并发器。 AQS定义了两种资源共享方式：Exclusive独占和Shared共享，默认是独占式。当以独占模式获取时，其他线程则不能获取到锁，共享模式下则可能成功。当共享模式获取成功时，下一个等待线程（如果存在）也必须确定它是否也可以获取。 在">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-28T12:20:33.276Z">
+<meta property="og:updated_time" content="2019-04-09T08:59:05.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java Concurrent之AQS">
 <meta name="twitter:description" content="Java里的AQS是许多同步器的基石，例如ReentrantLock，Semaphore。AQS提供了一个框架，依赖FIFO先进先出的等待队列实现阻塞锁和同步并发器。 AQS定义了两种资源共享方式：Exclusive独占和Shared共享，默认是独占式。当以独占模式获取时，其他线程则不能获取到锁，共享模式下则可能成功。当共享模式获取成功时，下一个等待线程（如果存在）也必须确定它是否也可以获取。 在">
@@ -65,8 +65,6 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/archives">博客</a></li>
-	        
-				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 				<li><a href="/about">关于我</a></li>
 	        
@@ -122,8 +120,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -140,13 +136,11 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 25%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/archives">博客</a></li>
+					<li style="width: 33.333333333333336%"><a href="/archives">博客</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/随笔/">随笔</a></li>
-		        
-					<li style="width: 25%"><a href="/about">关于我</a></li>
+					<li style="width: 33.333333333333336%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -182,6 +176,35 @@
         
       </header>
     
+
+    <!-- 目录内容 -->
+    
+      <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+            <span class="btn-bg"></span>
+            <span class="btn-text">文章导航</span>
+            </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+      <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AQS内部类Node"><span class="toc-number">1.</span> <span class="toc-text">AQS内部类Node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析"><span class="toc-number">2.</span> <span class="toc-text">源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#acquire"><span class="toc-number">2.1.</span> <span class="toc-text">acquire</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tryAcquire"><span class="toc-number">2.2.</span> <span class="toc-text">tryAcquire</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#addWaiter"><span class="toc-number">2.3.</span> <span class="toc-text">addWaiter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#enq"><span class="toc-number">2.4.</span> <span class="toc-text">enq</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#acquireQueued"><span class="toc-number">2.5.</span> <span class="toc-text">acquireQueued</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shouldParkAfterFailedAcquire"><span class="toc-number">2.6.</span> <span class="toc-text">shouldParkAfterFailedAcquire</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#parkAndCheckInterrupt"><span class="toc-number">2.7.</span> <span class="toc-text">parkAndCheckInterrupt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#release"><span class="toc-number">2.8.</span> <span class="toc-text">release</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#acquireShared"><span class="toc-number">2.9.</span> <span class="toc-text">acquireShared</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#doAcquireShared"><span class="toc-number">2.10.</span> <span class="toc-text">doAcquireShared</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setHeadAndPropagate"><span class="toc-number">2.11.</span> <span class="toc-text">setHeadAndPropagate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#doReleaseShared"><span class="toc-number">2.12.</span> <span class="toc-text">doReleaseShared</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#releaseShared"><span class="toc-number">2.13.</span> <span class="toc-text">releaseShared</span></a></li></ol></li></ol>
+          </div>
+    <script type="text/javascript">
+    function showToc(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:block");
+      show_toc_btn.setAttribute("style","display:none");
+      };
+    function showBtn(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:none");
+      show_toc_btn.setAttribute("style","display:block");
+      };
+    </script>
+        
+    <!-- 目录内容结束 -->
+
     <div class="article-entry" itemprop="articleBody">
       
         <p>Java里的AQS是许多同步器的基石，例如ReentrantLock，Semaphore。AQS提供了一个框架，依赖FIFO先进先出的等待队列实现阻塞锁和同步并发器。</p>
@@ -432,6 +455,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AQS内部类Node"><span class="toc-number">1.</span> <span class="toc-text">AQS内部类Node</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码分析"><span class="toc-number">2.</span> <span class="toc-text">源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#acquire"><span class="toc-number">2.1.</span> <span class="toc-text">acquire</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tryAcquire"><span class="toc-number">2.2.</span> <span class="toc-text">tryAcquire</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#addWaiter"><span class="toc-number">2.3.</span> <span class="toc-text">addWaiter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#enq"><span class="toc-number">2.4.</span> <span class="toc-text">enq</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#acquireQueued"><span class="toc-number">2.5.</span> <span class="toc-text">acquireQueued</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shouldParkAfterFailedAcquire"><span class="toc-number">2.6.</span> <span class="toc-text">shouldParkAfterFailedAcquire</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#parkAndCheckInterrupt"><span class="toc-number">2.7.</span> <span class="toc-text">parkAndCheckInterrupt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#release"><span class="toc-number">2.8.</span> <span class="toc-text">release</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#acquireShared"><span class="toc-number">2.9.</span> <span class="toc-text">acquireShared</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#doAcquireShared"><span class="toc-number">2.10.</span> <span class="toc-text">doAcquireShared</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setHeadAndPropagate"><span class="toc-number">2.11.</span> <span class="toc-text">setHeadAndPropagate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#doReleaseShared"><span class="toc-number">2.12.</span> <span class="toc-text">doReleaseShared</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#releaseShared"><span class="toc-number">2.13.</span> <span class="toc-text">releaseShared</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -699,6 +735,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-  <a href="https://github.com/WyhLjn"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+  <!-- <a href="https://github.com/WyhLjn"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a> -->
 </body>
 </html>
