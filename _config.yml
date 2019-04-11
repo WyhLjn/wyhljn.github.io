@@ -78,8 +78,10 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/WyhLjn/wyhljn.github.io.git
+  repo: git@github.com:WyhLjn/wyhljn.github.io.git
   branch: master
+  name: WyhLjn
+  email: wyhljn@gmail.com
 
 jsonContent:
     meta: false
