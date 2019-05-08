@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hui</title>
+  <title>LeetCode - Same Tree | Hui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hui">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="Given two binary trees, write a function to check if they are the same or not. Two binary trees are considered the same if they are structurally identical and the nodes have the same value. Example 1">
+<meta name="keywords" content="LeetCode,Java,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode - Same Tree">
+<meta property="og:url" content="http://yoursite.com/2019/05/08/LeetCode-Same-Tree/index.html">
 <meta property="og:site_name" content="Hui">
+<meta property="og:description" content="Given two binary trees, write a function to check if they are the same or not. Two binary trees are considered the same if they are structurally identical and the nodes have the same value. Example 1">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-08T10:41:44.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hui">
+<meta name="twitter:title" content="LeetCode - Same Tree">
+<meta name="twitter:description" content="Given two binary trees, write a function to check if they are the same or not. Two binary trees are considered the same if they are structurally identical and the nodes have the same value. Example 1">
   
     <link rel="alternative" href="/atom.xml" title="Hui" type="application/atom+xml">
   
@@ -150,16 +155,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-LeetCode-Count-And-Say" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-LeetCode-Same-Tree" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/16/LeetCode-Count-And-Say/">LeetCode - Count And Say</a>
+    <h1 class="article-title" itemprop="name">
+      LeetCode - Same Tree
     </h1>
   
 
@@ -167,8 +170,8 @@
   	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
 </a>
         
-        <a href="/2019/04/16/LeetCode-Count-And-Say/" class="archive-article-date">
-  	<time datetime="2019-04-16T08:19:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-16</time>
+        <a href="/2019/05/08/LeetCode-Same-Tree/" class="archive-article-date">
+  	<time datetime="2019-05-08T10:41:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
 </a>
         
       </header>
@@ -181,936 +184,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>The count-and-say sequence is the sequence of integers with the first five terms as following:</p>
-<p>1 -&gt;  1</p>
-<p>2 -&gt;  11</p>
-<p>3 -&gt;  21</p>
-<p>4 -&gt;  1211</p>
-<p>5 -&gt;  111221</p>
-<p>1 is read off as “one 1” or 11.<br>11 is read off as “two 1s” or 21.<br>21 is read off as “one 2, then one 1” or 1211.</p>
-<p>Given an integer n where 1 ≤ n ≤ 30, generate the nth term of the count-and-say sequence.</p>
-<p>Note: Each term of the sequence of integers will be represented as a string.</p>
+<p>Given two binary trees, write a function to check if they are the same or not.</p>
+<p>Two binary trees are considered the same if they are structurally identical and the nodes have the same value.</p>
 <p>Example 1:</p>
-<p>Input: 1<br>Output: “1”</p>
+<p>Input:  [1,2,3], [1,2,3]</p>
+<p>Output: true</p>
 <p>Example 2:</p>
-<p>Input: 4<br>Output: “1211”</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"1"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span>[] chars = countAndSay(n - <span class="number">1</span>).toCharArray();</span><br><span class="line">    <span class="keyword">int</span> length = chars.length;</span><br><span class="line">    <span class="keyword">char</span> temp = chars[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> sameCharCount = <span class="number">0</span>;</span><br><span class="line">    StringBuilder retStr = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">        <span class="keyword">char</span> cur = chars[i];</span><br><span class="line">        <span class="keyword">if</span> (cur == temp) &#123;</span><br><span class="line">            sameCharCount ++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            retStr.append(sameCharCount).append(temp);</span><br><span class="line">            temp = cur;</span><br><span class="line">            sameCharCount = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    retStr.append(sameCharCount &gt; <span class="number">0</span> ? sameCharCount + String.valueOf(temp) : <span class="string">""</span>);</span><br><span class="line">    <span class="keyword">return</span> retStr.toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 312211</span></span><br><span class="line">    System.out.println(<span class="keyword">new</span> CountAndSay().countAndSay(<span class="number">6</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/16/LeetCode-Count-And-Say/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LeetCode-Search-Insert-Position" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/10/LeetCode-Search-Insert-Position/">LeetCode - Search Insert Position</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2019/04/10/LeetCode-Search-Insert-Position/" class="archive-article-date">
-  	<time datetime="2019-04-10T09:53:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-10</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-<p>You may assume no duplicates in the array.</p>
-<p>Example 1:</p>
-<p>Input: [1,3,5,6], 5<br>Output: 2<br>Example 2:</p>
-<p>Input: [1,3,5,6], 2<br>Output: 1<br>Example 3:</p>
-<p>Input: [1,3,5,6], 7<br>Output: 4<br>Example 4:</p>
-<p>Input: [1,3,5,6], 0<br>Output: 0</p>
-</blockquote>
-<hr>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt;= target) <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] nums = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>&#125;;</span><br><span class="line">    <span class="comment">// position:2</span></span><br><span class="line">    System.out.println(<span class="string">"position:"</span> + <span class="keyword">new</span> SearchInsertPosition().searchInsert(nums, <span class="number">4</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/10/LeetCode-Search-Insert-Position/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LeetCode-Implement-strStr" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/LeetCode-Implement-strStr/">LeetCode - Implement strStr</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2019/04/09/LeetCode-Implement-strStr/" class="archive-article-date">
-  	<time datetime="2019-04-09T10:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-09</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Implement strStr().</p>
-<p>Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.</p>
-<p>Example 1:</p>
-<p>Input: haystack = “hello”, needle = “ll”<br>Output: 2<br>Example 2:</p>
-<p>Input: haystack = “aaaaa”, needle = “bba”<br>Output: -1</p>
-</blockquote>
-<hr>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == haystack) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == needle || needle.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (needle.length() &gt; haystack.length()) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> m = haystack.length(), n = needle.length();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m - n + <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (haystack.charAt(i+j) != needle.charAt(j)) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (j == n) <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    String str = <span class="string">"bcdefgabcdabc"</span>;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="keyword">new</span> ImplementStrStr().strStr(str, <span class="string">"abc"</span>);</span><br><span class="line">    <span class="comment">// index:6</span></span><br><span class="line">    System.out.println(<span class="string">"index:"</span> + index);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/09/LeetCode-Implement-strStr/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LeetCode-Remove-Element" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/04/LeetCode-Remove-Element/">LeetCode - Remove Element</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2019/04/04/LeetCode-Remove-Element/" class="archive-article-date">
-  	<time datetime="2019-04-04T11:00:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-04</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Given an array nums and a value val, remove all instances of that value in-place and return the new length.</p>
-<p>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.</p>
-<p>The order of elements can be changed. It doesn’t matter what you leave beyond the new length.</p>
-<p>Example 1:</p>
-<p>Given nums = [3,2,2,3], val = 3,</p>
-<p>Your function should return length = 2, with the first two elements of nums being 2.</p>
-<p>It doesn’t matter what you leave beyond the returned length.<br>Example 2:</p>
-<p>Given nums = [0,1,2,2,3,0,4,2], val = 2,</p>
-<p>Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.</p>
-<p>Note that the order of those five elements can be arbitrary.</p>
-<p>It doesn’t matter what values are set beyond the returned length.</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] != val) &#123;</span><br><span class="line">            nums[pos] = nums[i];</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] nums = &#123;<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="keyword">new</span> RemoveElement().removeElement(nums, <span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 1 0 4 5</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        System.out.println(nums[i] + <span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/04/LeetCode-Remove-Element/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LeetCode-Remove-Duplicates-from-Sorted-Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/02/LeetCode-Remove-Duplicates-from-Sorted-Array/">LeetCode - Remove Duplicates from Sorted Array </a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2019/04/02/LeetCode-Remove-Duplicates-from-Sorted-Array/" class="archive-article-date">
-  	<time datetime="2019-04-02T10:22:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-02</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.</p>
-<p>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.</p>
-<p>Example 1:</p>
-<p>Given nums = [1,1,2],</p>
-<p>Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.</p>
-<p>It doesn’t matter what you leave beyond the returned length.</p>
-<p>Example 2:</p>
-<p>Given nums = [0,0,1,1,1,2,2,3,3,4],</p>
-<p>Your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.</p>
-<p>It doesn’t matter what values are set beyond the returned length.</p>
-</blockquote>
-<hr>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>, n = nums.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] != nums[i + <span class="number">1</span>]) &#123;</span><br><span class="line">            nums[j++] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    nums[j++] = nums[n - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] nums = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> n = <span class="keyword">new</span> RemoveDuplicatesFromSortedArray().removeDuplicates(nums);</span><br><span class="line">    <span class="comment">// 0 1 2 3 4</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        System.out.println(nums[i] + <span class="string">" "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/02/LeetCode-Remove-Duplicates-from-Sorted-Array/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java-Concurrent之ReentrantLock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/28/Java-Concurrent之ReentrantLock/">Java Concurrent之ReentrantLock</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2019/03/28/Java-Concurrent之ReentrantLock/" class="archive-article-date">
-  	<time datetime="2019-03-28T12:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-28</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>上一篇讲解了AQS作为Java并发基石，提供了一些并发的基本操作，acquire，release等。本文将介绍AQS的经典实现-ReentrantLock.</p>
-<p>先看下ReentrantLock的官方定义</p>
-<blockquote>
-<p>A reentrant mutual exclusion Lock with the same basic behavior and semantics as the implicit monitor lock accessed using synchronized methods and statements, but with extended capabilities.<br>A ReentrantLock is owned by the thread last successfully locking, but not yet unlocking it. A thread invoking lock will return, successfully acquiring the lock, when the lock is not owned by another thread. The method will return immediately if the current thread already owns the lock. </p>
-</blockquote>
-<p>ReentrantLock具有与synchronized相同的语义，提供了更为丰富的功能，使用起来也更加灵活。一个ReentrantLock由线程持有，线程成功获取到了锁，并且还尚未解锁。如果线程已经成功获取了锁，会立即返回成功。</p>
-<p>ReentrantLock定义了两种锁，公平所和非公平锁。当选择公平锁时，在争用下，锁有利于授予访问最长等待的线程，但是这种情况下，就不能保证访问顺序了。<strong>锁的公平性并不能保证线程调度的公平性。</strong> 因此，使用公平锁的许多线程之一可以连续获得锁多次，而其他活动线程没有执行，也没有获取锁。</p>
-<p>ReentrantLock默认使用非公平锁</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates an instance of &#123;<span class="doctag">@code</span> ReentrantLock&#125;.</span></span><br><span class="line"><span class="comment"> * This is equivalent to using &#123;<span class="doctag">@code</span> ReentrantLock(false)&#125;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    sync = <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还提供了一个构造函数，可以自主选择公平锁还是非公平锁</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates an instance of &#123;<span class="doctag">@code</span> ReentrantLock&#125; with the</span></span><br><span class="line"><span class="comment"> * given fairness policy.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fair &#123;<span class="doctag">@code</span> true&#125; if this lock should use a fair ordering policy</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</span><br><span class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>ReentrantLock定义了一个内部虚拟静态类<strong>Sync</strong>，该类继承自<a href="https://wyhljn.github.io/2019/03/20/Java-Concurrent%E4%B9%8BAQS/" target="_blank" rel="noopener">AQS</a>，然后公平锁和非公平锁又继承自Sync。</p>
-<ul>
-<li><h4 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h4></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sync object for fair locks</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">FairSync</span> <span class="keyword">extends</span> <span class="title">Sync</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">3000897897090466540L</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Lock方法调用了AQS的acquire</span></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        acquire(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Fair version of tryAcquire.  Don't grant access unless</span></span><br><span class="line"><span class="comment">     * recursive call or no waiters or is first.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Thread current = Thread.currentThread();</span><br><span class="line">        <span class="keyword">int</span> c = getState();</span><br><span class="line">        <span class="comment">// 第一次获取锁</span></span><br><span class="line">        <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!hasQueuedPredecessors() &amp;&amp;</span><br><span class="line">                compareAndSetState(<span class="number">0</span>, acquires)) &#123;</span><br><span class="line">                setExclusiveOwnerThread(current);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</span><br><span class="line">            <span class="keyword">int</span> nextc = c + acquires;</span><br><span class="line">            <span class="keyword">if</span> (nextc &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">"Maximum lock count exceeded"</span>);</span><br><span class="line">            setState(nextc);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从AQS那篇文章里可以得知，<strong>acquire</strong>方法会调用自定义的<strong>tryAcquire</strong>方法。公平锁实现了自定义的<strong>tryAcquire</strong>。<br><strong>acquire</strong>会根据<strong>tryAcquire</strong>的返回值判断是否立即成功，<strong>tryAcquire</strong>返回true将获得锁。</p>
-        
-          <a class="article-more-a" href="/2019/03/28/Java-Concurrent之ReentrantLock/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/28/Java-Concurrent之ReentrantLock/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LeetCode-Merge-Two-Sorted-Lists" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/22/LeetCode-Merge-Two-Sorted-Lists/">LeetCode - Merge Two Sorted Lists</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2019/03/22/LeetCode-Merge-Two-Sorted-Lists/" class="archive-article-date">
-  	<time datetime="2019-03-22T11:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
-<p>Example:</p>
-<p>Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4<br>Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</p>
-</blockquote>
-<hr>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    ListNode newList = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 不会丢失头结点</span></span><br><span class="line">    ListNode cur = newList;</span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1.val &lt; l2.val) &#123;</span><br><span class="line">            cur.next = l1;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            cur.next = l2;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cur = cur.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cur.next = (l1 == <span class="keyword">null</span>) ? l2 : l1;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> newList.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/22/LeetCode-Merge-Two-Sorted-Lists/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java-Concurrent之AQS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/20/Java-Concurrent之AQS/">Java Concurrent之AQS</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2019/03/20/Java-Concurrent之AQS/" class="archive-article-date">
-  	<time datetime="2019-03-20T10:56:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-20</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java里的AQS是许多同步器的基石，例如ReentrantLock，Semaphore。AQS提供了一个框架，依赖FIFO先进先出的等待队列实现阻塞锁和同步并发器。</p>
-<p>AQS定义了两种资源共享方式：Exclusive独占和Shared共享，默认是独占式。当以独占模式获取时，其他线程则不能获取到锁，共享模式下则可能成功。当共享模式获取成功时，下一个等待线程（如果存在）也必须确定它是否也可以获取。 在不同模式下等待的线程共享相同的FIFO队列。 通常，实现子类只支持这些模式之一，但是两者都可以在ReadWriteLock中发挥作用 。 仅支持独占或仅共享模式的子类不需要定义支持未使用模式的方法。</p>
-<p>子类想实现同步的功能，需要实现以下这几个方法</p>
-<ul>
-<li>tryAcquire</li>
-<li>tryRelease</li>
-<li>tryAcquireShared</li>
-<li>tryReleaseShared</li>
-<li>isHeldExclusively</li>
-</ul>
-<h3 id="AQS内部类Node"><a href="#AQS内部类Node" class="headerlink" title="AQS内部类Node"></a>AQS内部类Node</h3><p>Node定义了两个常量，分别标识独占式和共享式</p>
-<blockquote>
-<p>static final Node SHARED = new Node();</p>
-<p>static final Node EXCLUSIVE = null;</p>
-</blockquote>
-<p>还约定了线程等待队列的5种状态</p>
-<ol>
-<li>默认状态0.</li>
-<li>SIGNAL = -1，代表后继节点需要被唤醒。当其前继节点的线程释放了同步锁或被取消，将会通知该后继节点的线程执行，也就是当前节点释放锁了，后继节点就会马上执行</li>
-<li>CANCELLED = 1，当前节点因为超时或者中断取消了。取消状态的线程永远不会再阻塞。</li>
-<li>CONDITION = -2，标识当前节点处于等待队列中。经过transfer之后，会转为同步队列。</li>
-<li>PROPAGATE = -3，表明下一个acquireShared应该无条件传播。</li>
-</ol>
-        
-          <a class="article-more-a" href="/2019/03/20/Java-Concurrent之AQS/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/20/Java-Concurrent之AQS/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LeetCode-Valid-Parentheses" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/19/LeetCode-Valid-Parentheses/">LeetCode - Valid Parentheses</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2019/03/19/LeetCode-Valid-Parentheses/" class="archive-article-date">
-  	<time datetime="2019-03-19T10:54:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-19</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.</p>
-<p>An input string is valid if:</p>
-<p>Open brackets must be closed by the same type of brackets.<br>Open brackets must be closed in the correct order.<br>Note that an empty string is also considered valid.</p>
-<p>Example 1:</p>
-<p>Input: “()”<br>Output: true</p>
-<p>Example 2:</p>
-<p>Input: “()[]{}”<br>Output: true</p>
+<p>Input:  [1,2],    [1,null,2]</p>
+<p>Output: false</p>
 <p>Example 3:</p>
-<p>Input: “(]”<br>Output: false</p>
-<p>Example 4:</p>
-<p>Input: “([)]”<br>Output: false</p>
-<p>Example 5:</p>
-<p>Input: “{[]}”<br>Output: true</p>
+<p>Input:  [1,2,1], [1,1,2]</p>
+<p>Output: false</p>
 </blockquote>
 <hr>
-        
-          <a class="article-more-a" href="/2019/03/19/LeetCode-Valid-Parentheses/#more">more >></a>
-        
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span> &amp;&amp; q == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="keyword">null</span> || q == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (p.val != q.val) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> isSameTree(p.left, q.left) &amp;&amp; isSameTree(p.right, q.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -1151,16 +238,84 @@
 
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/19/LeetCode-Valid-Parentheses/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/08/LeetCode-Same-Tree/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/05/08/LeetCode-Symmetric-Tree/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          LeetCode - Symmetric Tree
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/06/LeetCode-Merge-Sorted-Array/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LeetCode - Merge Sorted Array</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -1180,125 +335,30 @@
 
 
 
-
-  
-    <article id="post-LeetCode-Longest-Common-Prefix" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/18/LeetCode-Longest-Common-Prefix/">LeetCode - Longest Common Prefix</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2019/03/18/LeetCode-Longest-Common-Prefix/" class="archive-article-date">
-  	<time datetime="2019-03-18T11:06:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-18</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Write a function to find the longest common prefix string amongst an array of strings.</p>
-<p>If there is no common prefix, return an empty string “”.</p>
-<p>Example 1:</p>
-<p>Input: [“flower”,”flow”,”flight”]<br>Output: “fl”</p>
-<p>Example 2:</p>
-<p>Input: [“dog”,”racecar”,”car”]<br>Output: “”<br>Explanation: There is no common prefix among the input strings.</p>
-<p>Note:</p>
-<p>All given inputs are in lowercase letters a-z.</p>
-</blockquote>
-<hr>
-        
-          <a class="article-more-a" href="/2019/03/18/LeetCode-Longest-Common-Prefix/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/18/LeetCode-Longest-Common-Prefix/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'true'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
   
 
 
@@ -1325,8 +385,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
