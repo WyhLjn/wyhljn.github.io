@@ -1,5 +1,5 @@
 ---
-title: LeetCode Path Sum
+title: LeetCode - Path Sum
 date: 2019-05-21 12:01:15
 categories:
 - 工作

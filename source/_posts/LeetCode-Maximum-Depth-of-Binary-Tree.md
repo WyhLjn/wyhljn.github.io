@@ -1,5 +1,5 @@
 ---
-title: LeetCode Maximum Depth of Binary Tree
+title: LeetCode - Maximum Depth of Binary Tree
 date: 2019-05-21 12:00:14
 categories:
 - 工作

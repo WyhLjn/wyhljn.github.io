@@ -1,5 +1,5 @@
 ---
-title: LeetCode Pascal's Triangle
+title: LeetCode - Pascal's Triangle
 date: 2019-05-21 12:01:57
 categories:
 - 工作

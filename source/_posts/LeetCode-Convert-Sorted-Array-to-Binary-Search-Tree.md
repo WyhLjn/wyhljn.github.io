@@ -1,5 +1,5 @@
 ---
-title: LeetCode Convert Sorted Array to Binary Search Tree
+title: LeetCode - Convert Sorted Array to Binary Search Tree
 date: 2019-05-21 11:57:25
 categories:
 - 工作

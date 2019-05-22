@@ -1,5 +1,5 @@
 ---
-title: 'LeetCode - Remove Duplicates from Sorted Array '
+title: LeetCode - Remove Duplicates from Sorted Array
 date: 2019-04-02 18:22:03
 categories:
 - 工作
