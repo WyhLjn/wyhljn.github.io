@@ -34,6 +34,8 @@
 
   
 
+<link rel="stylesheet" href="/assets/css/APlayer.min.css" class="aplayer-style-marker">
+<script src="/assets/js/APlayer.min.js" class="aplayer-script-marker"></script>
 </head>
 </html>
 <body>
@@ -151,6 +153,128 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Hexo添加外链播放器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/08/Hexo添加外链播放器/">Hexo添加外链播放器</a>
+    </h1>
+  
+
+        <a href="javascript:void(0)" class="archive-article-date">
+  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
+</a>
+        
+        <a href="/2018/06/08/Hexo添加外链播放器/" class="archive-article-date">
+  	<time datetime="2018-06-08T05:13:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-08</time>
+</a>
+        
+      </header>
+    
+
+    <!-- 目录内容 -->
+    
+    <!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>想给博客添加一首音乐这么费劲，也是没谁了。有的没有版权，有的没有外链播放器，无奈之下还是Google吧，Google大法好，帮我解决了问题。</p>
+<h3 id="查找歌曲地址"><a href="#查找歌曲地址" class="headerlink" title="查找歌曲地址"></a>查找歌曲地址</h3><p>从<a href="http://www.170mv.com/song" target="_blank" rel="noopener">http://www.170mv.com/song</a>可以获得外链地址<br><img src="http://ww1.sinaimg.cn/large/ad274f89ly1g0u6eq1h64j20nx08qq2y.jpg" alt></p>
+<h3 id="使用APlayer插入音乐"><a href="#使用APlayer插入音乐" class="headerlink" title="使用APlayer插入音乐"></a>使用APlayer插入音乐</h3><p>在Markdown里插入如下代码片段即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayer &quot;是初恋吧&quot; &quot;IU&quot; &quot;http://other.web.rc01.sycdn.kuwo.cn/resource/n1/56/42/3309799366.mp3&quot; &quot;iu.jpg&quot; %&#125;</span><br></pre></td></tr></table></figure>
+
+        <div id="aplayer-GjcdAyLV" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-GjcdAyLV"),
+            narrow: false,
+            autoplay: true,
+            showlrc: false,
+            music: {
+              title: "是初恋吧",
+              author: "IU",
+              url: "http://other.web.rc01.sycdn.kuwo.cn/resource/n1/56/42/3309799366.mp3",
+              pic: "/2018/06/08/Hexo添加外链播放器/iu.jpg",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<p>要插入图片的话，需要在_config.xml里将<strong>post_asset_folder</strong>设置为true，这样每次通过 <code>hexo new &quot;&quot;</code> 新增文章时，会在同级目录里创建同名的文件夹，用来保存资源文件。<br>具体介绍可参考</p>
+<ul>
+<li><a href="https://hexo.io/zh-cn/docs/asset-folders.html#%E6%96%87%E7%AB%A0%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E5%A4%B9" target="_blank" rel="noopener">文章资源文件夹</a></li>
+<li><a href="https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md" target="_blank" rel="noopener">APlayer</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/博客//" class="article-tag-list-link color3">博客</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/08/Hexo添加外链播放器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Hexo博客添加网易云音乐播放器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -301,11 +425,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -415,11 +539,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -532,11 +656,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -687,6 +811,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
@@ -695,19 +831,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">并发</a>
               </li>
              
               <li class="article-tag-list-item">
