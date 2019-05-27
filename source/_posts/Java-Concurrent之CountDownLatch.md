@@ -54,6 +54,8 @@ private static final class Sync extends AbstractQueuedSynchronizer {
 }
 ```
 
+<!-- more -->
+
 #### await方法
 
 ```java
