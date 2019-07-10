@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>LeetCode - Path Sum | Hui</title>
+  <title>LeetCode Intersection of Two Linked Lists | Hui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. Note: A leaf is a node with no children. Example:">
+  <meta name="description" content="找到两个链表的交集的开始的节点，没有交集返回null 假设有A，B两个链表，A链表为[4, 1, 8, 4, 5]，B链表为[5, 0, 1, 8, 4, 5]，则两个链表的交集的开始节点为8。 1234567891011public ListNode getIntersectionNode(ListNode headA, ListNode headB) &amp;#123;    if (headA =">
 <meta name="keywords" content="Java,LeetCode,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode - Path Sum">
-<meta property="og:url" content="http://yoursite.com/2019/05/21/LeetCode-Path-Sum/index.html">
+<meta property="og:title" content="LeetCode Intersection of Two Linked Lists">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/LeetCode-Intersection-of-Two-Linked-Lists/index.html">
 <meta property="og:site_name" content="Hui">
-<meta property="og:description" content="Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. Note: A leaf is a node with no children. Example:">
+<meta property="og:description" content="找到两个链表的交集的开始的节点，没有交集返回null 假设有A，B两个链表，A链表为[4, 1, 8, 4, 5]，B链表为[5, 0, 1, 8, 4, 5]，则两个链表的交集的开始节点为8。 1234567891011public ListNode getIntersectionNode(ListNode headA, ListNode headB) &amp;#123;    if (headA =">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-22T10:38:38.627Z">
+<meta property="og:updated_time" content="2019-07-10T09:21:50.461Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode - Path Sum">
-<meta name="twitter:description" content="Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum. Note: A leaf is a node with no children. Example:">
+<meta name="twitter:title" content="LeetCode Intersection of Two Linked Lists">
+<meta name="twitter:description" content="找到两个链表的交集的开始的节点，没有交集返回null 假设有A，B两个链表，A链表为[4, 1, 8, 4, 5]，B链表为[5, 0, 1, 8, 4, 5]，则两个链表的交集的开始节点为8。 1234567891011public ListNode getIntersectionNode(ListNode headA, ListNode headB) &amp;#123;    if (headA =">
   
     <link rel="alternative" href="/atom.xml" title="Hui" type="application/atom+xml">
   
@@ -155,14 +155,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-LeetCode-Path-Sum" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-LeetCode-Intersection-of-Two-Linked-Lists" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      LeetCode - Path Sum
+      LeetCode Intersection of Two Linked Lists
     </h1>
   
 
@@ -170,8 +170,8 @@
   	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
 </a>
         
-        <a href="/2019/05/21/LeetCode-Path-Sum/" class="archive-article-date">
-  	<time datetime="2019-05-21T04:01:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-21</time>
+        <a href="/2019/07/10/LeetCode-Intersection-of-Two-Linked-Lists/" class="archive-article-date">
+  	<time datetime="2019-07-10T09:21:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
 </a>
         
       </header>
@@ -183,14 +183,10 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.</p>
-<p>Note: A leaf is a node with no children.</p>
-<p>Example:</p>
-<p>Given the below binary tree and sum = 22, return true, as there exist a root-to-leaf path 5-&gt;4-&gt;11-&gt;2 which sum is 22.</p>
-</blockquote>
-<p>题目意思是：给定一个二叉树和一个值，判断从根节点到叶子节点的路径，满足有一条路径上的节点加起来等于该值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathSum</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == root) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span> &amp;&amp; sum - root.val == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>找到两个链表的交集的开始的节点，没有交集返回null</p>
+<p>假设有A，B两个链表，A链表为[4, 1, 8, 4, 5]，<br>B链表为[5, 0, 1, 8, 4, 5]，则两个链表的交集的开始节点为8。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode a = headA, b = headB;</span><br><span class="line">    <span class="keyword">while</span> (a != b) &#123;</span><br><span class="line">        a = a == <span class="keyword">null</span> ? headB : a.next;</span><br><span class="line">        b = b == <span class="keyword">null</span> ? headA : b.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -278,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/21/LeetCode-Path-Sum/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/10/LeetCode-Intersection-of-Two-Linked-Lists/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,18 +288,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/05/21/LeetCode-Pascal-s-Triangle/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          LeetCode - Pascal&#39;s Triangle
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/05/21/LeetCode-Maximum-Depth-of-Binary-Tree/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">LeetCode - Maximum Depth of Binary Tree</div>
+    <a href="/2019/05/24/Java-Concurrent之CountDownLatch/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java Concurrent之CountDownLatch</div>
       <i class="icon-circle-right"></i>
     </a>
   
