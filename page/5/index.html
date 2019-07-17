@@ -154,6 +154,231 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java-Concurrent之ReentrantLock" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/28/Java-Concurrent之ReentrantLock/">Java Concurrent之ReentrantLock</a>
+    </h1>
+  
+
+        <a href="javascript:void(0)" class="archive-article-date">
+  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
+</a>
+        
+        <a href="/2019/03/28/Java-Concurrent之ReentrantLock/" class="archive-article-date">
+  	<time datetime="2019-03-28T12:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-28</time>
+</a>
+        
+      </header>
+    
+
+    <!-- 目录内容 -->
+    
+    <!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上一篇讲解了AQS作为Java并发基石，提供了一些并发的基本操作，acquire，release等。本文将介绍AQS的经典实现-ReentrantLock.</p>
+<p>先看下ReentrantLock的官方定义</p>
+<blockquote>
+<p>A reentrant mutual exclusion Lock with the same basic behavior and semantics as the implicit monitor lock accessed using synchronized methods and statements, but with extended capabilities.<br>A ReentrantLock is owned by the thread last successfully locking, but not yet unlocking it. A thread invoking lock will return, successfully acquiring the lock, when the lock is not owned by another thread. The method will return immediately if the current thread already owns the lock. </p>
+</blockquote>
+<p>ReentrantLock具有与synchronized相同的语义，提供了更为丰富的功能，使用起来也更加灵活。一个ReentrantLock由线程持有，线程成功获取到了锁，并且还尚未解锁。如果线程已经成功获取了锁，会立即返回成功。</p>
+<p>ReentrantLock定义了两种锁，公平所和非公平锁。当选择公平锁时，在争用下，锁有利于授予访问最长等待的线程，但是这种情况下，就不能保证访问顺序了。<strong>锁的公平性并不能保证线程调度的公平性。</strong> 因此，使用公平锁的许多线程之一可以连续获得锁多次，而其他活动线程没有执行，也没有获取锁。</p>
+<p>ReentrantLock默认使用非公平锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates an instance of &#123;<span class="doctag">@code</span> ReentrantLock&#125;.</span></span><br><span class="line"><span class="comment"> * This is equivalent to using &#123;<span class="doctag">@code</span> ReentrantLock(false)&#125;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    sync = <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还提供了一个构造函数，可以自主选择公平锁还是非公平锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates an instance of &#123;<span class="doctag">@code</span> ReentrantLock&#125; with the</span></span><br><span class="line"><span class="comment"> * given fairness policy.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> fair &#123;<span class="doctag">@code</span> true&#125; if this lock should use a fair ordering policy</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</span><br><span class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ReentrantLock定义了一个内部虚拟静态类<strong>Sync</strong>，该类继承自<a href="https://wyhljn.github.io/2019/03/20/Java-Concurrent%E4%B9%8BAQS/" target="_blank" rel="noopener">AQS</a>，然后公平锁和非公平锁又继承自Sync。</p>
+<ul>
+<li><h4 id="公平锁"><a href="#公平锁" class="headerlink" title="公平锁"></a>公平锁</h4></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sync object for fair locks</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">FairSync</span> <span class="keyword">extends</span> <span class="title">Sync</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = -<span class="number">3000897897090466540L</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Lock方法调用了AQS的acquire</span></span><br><span class="line">    <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        acquire(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Fair version of tryAcquire.  Don't grant access unless</span></span><br><span class="line"><span class="comment">     * recursive call or no waiters or is first.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Thread current = Thread.currentThread();</span><br><span class="line">        <span class="keyword">int</span> c = getState();</span><br><span class="line">        <span class="comment">// 第一次获取锁</span></span><br><span class="line">        <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!hasQueuedPredecessors() &amp;&amp;</span><br><span class="line">                compareAndSetState(<span class="number">0</span>, acquires)) &#123;</span><br><span class="line">                setExclusiveOwnerThread(current);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</span><br><span class="line">            <span class="keyword">int</span> nextc = c + acquires;</span><br><span class="line">            <span class="keyword">if</span> (nextc &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">"Maximum lock count exceeded"</span>);</span><br><span class="line">            setState(nextc);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从AQS那篇文章里可以得知，<strong>acquire</strong>方法会调用自定义的<strong>tryAcquire</strong>方法。公平锁实现了自定义的<strong>tryAcquire</strong>。<br><strong>acquire</strong>会根据<strong>tryAcquire</strong>的返回值判断是否立即成功，<strong>tryAcquire</strong>返回true将获得锁。</p>
+        
+          <a class="article-more-a" href="/2019/03/28/Java-Concurrent之ReentrantLock/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">并发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/28/Java-Concurrent之ReentrantLock/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-LeetCode-Merge-Two-Sorted-Lists" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/22/LeetCode-Merge-Two-Sorted-Lists/">LeetCode - Merge Two Sorted Lists</a>
+    </h1>
+  
+
+        <a href="javascript:void(0)" class="archive-article-date">
+  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
+</a>
+        
+        <a href="/2019/03/22/LeetCode-Merge-Two-Sorted-Lists/" class="archive-article-date">
+  	<time datetime="2019-03-22T11:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-22</time>
+</a>
+        
+      </header>
+    
+
+    <!-- 目录内容 -->
+    
+    <!-- 目录内容结束 -->
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
+<p>Example:</p>
+<p>Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4<br>Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</p>
+</blockquote>
+<hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    ListNode newList = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 不会丢失头结点</span></span><br><span class="line">    ListNode cur = newList;</span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1.val &lt; l2.val) &#123;</span><br><span class="line">            cur.next = l1;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            cur.next = l2;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cur = cur.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cur.next = (l1 == <span class="keyword">null</span>) ? l2 : l1;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> newList.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/22/LeetCode-Merge-Two-Sorted-Lists/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java-Concurrent之AQS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -989,12 +1214,12 @@
 <h3 id="使用APlayer插入音乐"><a href="#使用APlayer插入音乐" class="headerlink" title="使用APlayer插入音乐"></a>使用APlayer插入音乐</h3><p>在Markdown里插入如下代码片段即可</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayer &quot;是初恋吧&quot; &quot;IU&quot; &quot;http://other.web.rc01.sycdn.kuwo.cn/resource/n1/56/42/3309799366.mp3&quot; &quot;iu.jpg&quot; %&#125;</span><br></pre></td></tr></table></figure>
 
-        <div id="aplayer-ZVkDEtuv" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-KcnygubV" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-ZVkDEtuv"),
+            element: document.getElementById("aplayer-KcnygubV"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -1049,218 +1274,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/06/08/Hexo添加外链播放器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo博客添加网易云音乐播放器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/07/Hexo博客添加网易云音乐播放器/">Hexo博客添加网易云音乐播放器</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2018/06/07/Hexo博客添加网易云音乐播放器/" class="archive-article-date">
-  	<time datetime="2018-06-07T05:13:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-07</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><blockquote>
-<p>之前一直在用QQ音乐，但直到看到周围的人都开始听网易云音乐，我开始接触这款产品。用了不到一个星期，我发现我开始喜欢上云音乐了。一直觉得，网易是比较会做产品的公司，喜欢它们产品的风格，有小清新范，第一感觉会让你觉得很干净、纯净，比如Lofter，考拉，蜗牛读书。首先产品的外观就吸引了我。</p>
-<p>用了一段云音乐以后，喜欢上了它里面的各种个性化的歌单，里面集结了很多网络歌手，还让我初次接触了民谣，而且音乐下面还有评论功能，万千网友在这里畅所欲言， 讲述自己与音乐的不解之缘。这些特性让我深深迷恋着这款产品。</p>
-<p>但是好景不长，ZF出台了音乐版权管理办法之后，云音乐的曲库版权开始逐渐减少，收藏的歌曲慢慢不能播放了，好多音乐下架了。自己也很无奈，喜欢的产品不再能更好的为广大网民服务，真正有情节的东西马上要像昙花一样，还没足够的品味它，就即将要走到它的垂暮之年……</p>
-</blockquote>
-<hr>
-<h3 id="添加网易云音乐"><a href="#添加网易云音乐" class="headerlink" title="添加网易云音乐"></a>添加网易云音乐</h3><p>网音乐云音乐版权的丧失，让我不得不找到更稳定的外链播放器。<br>在此我还是依然要介绍下网易云音乐添加音乐的方式。<br>
-        
-          <a class="article-more-a" href="/2018/06/07/Hexo博客添加网易云音乐播放器/#more">more >></a>
-        
-      
-
-      
-    </p></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/博客//" class="article-tag-list-link color3">博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/07/Hexo博客添加网易云音乐播放器/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring上下文初始化时调用finishBeanFactoryInitialization的过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/27/Spring上下文初始化时调用finishBeanFactoryInitialization的过程/">Spring上下文初始化时调用finishBeanFactoryInitialization的过程</a>
-    </h1>
-  
-
-        <a href="javascript:void(0)" class="archive-article-date">
-  	<i class="icon-smile icon"></i> 阅读数:<span id="busuanzi_value_page_pv"></span>次
-</a>
-        
-        <a href="/2018/05/27/Spring上下文初始化时调用finishBeanFactoryInitialization的过程/" class="archive-article-date">
-  	<time datetime="2018-05-27T12:13:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
-</a>
-        
-      </header>
-    
-
-    <!-- 目录内容 -->
-    
-    <!-- 目录内容结束 -->
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>本文讲述Spring上下文初始化时另一个重要的方法<strong><em>finishBeanFactoryInitialization</em></strong></p>
-</blockquote>
-<p>这个方法将会初始化不是延迟加载的单例。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preInstantiateSingletons</span><span class="params">()</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span>.logger.isDebugEnabled()) &#123;</span><br><span class="line">		<span class="keyword">this</span>.logger.debug(<span class="string">"Pre-instantiating singletons in "</span> + <span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Iterate over a copy to allow for init methods which in turn register new bean definitions.</span></span><br><span class="line">	<span class="comment">// While this may not be part of the regular factory bootstrap, it does otherwise work fine.</span></span><br><span class="line">	List&lt;String&gt; beanNames = <span class="keyword">new</span> ArrayList&lt;String&gt;(<span class="keyword">this</span>.beanDefinitionNames);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Trigger initialization of all non-lazy singleton beans...</span></span><br><span class="line">	<span class="keyword">for</span> (String beanName : beanNames) &#123;</span><br><span class="line">		RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);</span><br><span class="line">		<span class="keyword">if</span> (!bd.isAbstract() &amp;&amp; bd.isSingleton() &amp;&amp; !bd.isLazyInit()) &#123;</span><br><span class="line">			<span class="keyword">if</span> (isFactoryBean(beanName)) &#123;</span><br><span class="line">				<span class="keyword">final</span> FactoryBean&lt;?&gt; factory = (FactoryBean&lt;?&gt;) getBean(FACTORY_BEAN_PREFIX + beanName);</span><br><span class="line">				<span class="keyword">boolean</span> isEagerInit;</span><br><span class="line">				<span class="keyword">if</span> (System.getSecurityManager() != <span class="keyword">null</span> &amp;&amp; factory <span class="keyword">instanceof</span> SmartFactoryBean) &#123;</span><br><span class="line">					isEagerInit = AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Boolean&gt;() &#123;</span><br><span class="line">						<span class="meta">@Override</span></span><br><span class="line">						<span class="function"><span class="keyword">public</span> Boolean <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">							<span class="keyword">return</span> ((SmartFactoryBean&lt;?&gt;) factory).isEagerInit();</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;, getAccessControlContext());</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> &#123;</span><br><span class="line">					isEagerInit = (factory <span class="keyword">instanceof</span> SmartFactoryBean &amp;&amp;</span><br><span class="line">							((SmartFactoryBean&lt;?&gt;) factory).isEagerInit());</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (isEagerInit) &#123;</span><br><span class="line">					getBean(beanName);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				getBean(beanName);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Trigger post-initialization callback for all applicable beans...</span></span><br><span class="line">	<span class="keyword">for</span> (String beanName : beanNames) &#123;</span><br><span class="line">		Object singletonInstance = getSingleton(beanName);</span><br><span class="line">		<span class="keyword">if</span> (singletonInstance <span class="keyword">instanceof</span> SmartInitializingSingleton) &#123;</span><br><span class="line">			<span class="keyword">final</span> SmartInitializingSingleton smartSingleton = (SmartInitializingSingleton) singletonInstance;</span><br><span class="line">			<span class="keyword">if</span> (System.getSecurityManager() != <span class="keyword">null</span>) &#123;</span><br><span class="line">				AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Object&gt;() &#123;</span><br><span class="line">					<span class="meta">@Override</span></span><br><span class="line">					<span class="function"><span class="keyword">public</span> Object <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">						smartSingleton.afterSingletonsInstantiated();</span><br><span class="line">						<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;, getAccessControlContext());</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				smartSingleton.afterSingletonsInstantiated();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/05/27/Spring上下文初始化时调用finishBeanFactoryInitialization的过程/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">源码</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作//" class="article-tag-list-link color3">工作</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工作/学习//" class="article-tag-list-link color3">学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/27/Spring上下文初始化时调用finishBeanFactoryInitialization的过程/">展开全文 >></a>
         </p>
       
 
